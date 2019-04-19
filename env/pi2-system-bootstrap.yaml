@@ -1,5 +1,29 @@
 ---
 spack_root:     /lustre/kcaps
-spack_conf:     /lustre/home/rpm/.spack
+spack_config:   /lustre/home/acct-hpc/hpc-jianwen/.spack
 spack_home:     /lustre/kcaps
 
+# Externally installed packages
+packages:
+
+compilers:
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc: /usr/bin/gcc
+        cxx: /usr/bin/g++
+        f77: /usr/bin/gfortran
+        fc: /usr/bin/gfortran
+      spec: gcc@4.8.5
+      target: x86_64
+
+mirrors:
+  remote_server: http://spack.pi.sjtu.edu.cn/mirror
+
+install:
+  - 'gcc@5.4.0 %gcc@4.8.5'
+  - 'intel@19.0.3 %gcc@4.8.5'

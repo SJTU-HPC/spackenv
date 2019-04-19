@@ -3,6 +3,7 @@
 import argparse
 import yaml
 import os
+import subprocess
 
 # Parse commandline options
 parser = argparse.ArgumentParser(description='Deploy Spack software environment')
@@ -20,23 +21,56 @@ args = parser.parse_args()
 # raise exception if $spack_root/bin/spack exists, and
 # create $spack_conf directory if necessary.
 env = yaml.load(args.env)
-if not os.path.isfile(os.path.join(env.spack_root, 'bin', 'spack')):
+
+if not os.path.isfile(os.path.join(env['spack_root'], 'bin', 'spack')):
 	raise FileNotFoundError(errno.ENOENT,
 		os.strerror(errno.ENOENT),
-		os.path.join(env.spack_root, 'bin', 'spack'))
+		os.path.join(env['spack_root'], 'bin', 'spack'))
 		 
-# Set and write to spack conf file
-if 'conf' not in env.keys():
-	env['conf']['checksum'] = true
-	env['conf']['dirty'] = false
-	env['conf']['install_tree'] = os.path.join(env.spack_home, os.environ['platform'])
-	env['conf']['module_roots']['tcl'] = os.path.join(env.spack_home, 'share', 'spack', 'modules', os.environ['platform'])
+# Set and write to spack config file
+if 'config' not in env.keys():
+	env['config'] = {}
+	env['config']['checksum'] = True
+	env['config']['dirty'] = False
+	env['config']['install_tree'] = os.path.join(env['spack_home'], os.environ['PLATFORM'])
+	env['config']['module_roots'] = {}
+	env['config']['module_roots']['tcl'] = os.path.join(env['spack_home'], 'share', 'spack', 'modules', os.environ['PLATFORM'])
 out = {}
-out['conf'] = env['conf']
-with open(os.path.join(env.spack_conf, 'config.yaml'), 'w') as outfile:
+out['config'] = env['config']
+with open(os.path.join(env['spack_config'], 'config.yaml'), 'w') as outfile:
 	yaml.dump(out, outfile, default_flow_style=False)
-	
+
+# Write $spack_config/packages.yaml
+out = {}
+out['packages'] = env['packages']
+with open(os.path.join(env['spack_config'], 'packages.yaml'), 'w') as outfile:
+	yaml.dump(out, outfile, default_flow_style=False)
+
+# Write $spack_config/linux/compilers.yaml
+out = {}
+out['compilers'] = env['compilers']
+with open(os.path.join(env['spack_config'], 'linux', 'compilers.yaml'), 'w') as outfile:
+	yaml.dump(out, outfile, default_flow_style=False)
+
+# Write $spack_config/linux/mirrors.yaml
+out = {}
+out['mirrors'] = env['mirrors']
+with open(os.path.join(env['spack_config'], 'linux', 'mirrors.yaml'), 'w') as outfile:
+	yaml.dump(out, outfile, default_flow_style=False)
+
+# Add settings to ~/.bashrc
+print("Spack environment has beeen initialized succesfully. Please add the following to the end of your ~/.bashrc file:\n\nexport SPACK_ROOT=%s\nsource $SPACK_ROOT/share/spack/setup-env.sh" % env['spack_root'])
+
 # Run Spack if --sync is NOT set
 if args.sync:
 	print("Sync cached source files to the mirror site")
 
+# Install packages
+for p in env['install']:
+	install(p)
+
+def install(spec):
+    # Install the spec package if absent
+    if "No package" in subprocess.check_output("spack find {}".format(spec), shell=True).decode("utf-8"):
+        print("{} not found. Build it.".format(spec))
+        os.system("spack install {}".format(spec))
