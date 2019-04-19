@@ -26,4 +26,5 @@ mirrors:
 
 install:
   - 'gcc@5.4.0 %gcc@4.8.5'
+  - 'gcc@8.3.0 %gcc@4.8.5'
   - 'intel@19.0.3 %gcc@4.8.5'
