@@ -5,6 +5,12 @@ import yaml
 import os
 import subprocess
 
+def install_from_spack(spec):
+    # Install the spec package if absent
+    if "No package" in subprocess.check_output("spack find {}".format(spec), shell=True).decode("utf-8"):
+        print("{} not found. Build it.".format(spec))
+        os.system("spack install {}".format(spec))
+
 # Parse commandline options
 parser = argparse.ArgumentParser(description='Deploy Spack software environment')
 
@@ -43,8 +49,9 @@ with open(os.path.join(env['spack_config'], 'config.yaml'), 'w') as outfile:
 # Write $spack_config/packages.yaml
 out = {}
 out['packages'] = env['packages']
-with open(os.path.join(env['spack_config'], 'packages.yaml'), 'w') as outfile:
-	yaml.dump(out, outfile, default_flow_style=False)
+if out['packages'] is not None:
+    with open(os.path.join(env['spack_config'], 'packages.yaml'), 'w') as outfile:
+    	yaml.dump(out, outfile, default_flow_style=False)
 
 # Write $spack_config/linux/compilers.yaml
 out = {}
@@ -67,10 +74,5 @@ if args.sync:
 
 # Install packages
 for p in env['install']:
-	install(p)
+	install_from_spack(p)
 
-def install(spec):
-    # Install the spec package if absent
-    if "No package" in subprocess.check_output("spack find {}".format(spec), shell=True).decode("utf-8"):
-        print("{} not found. Build it.".format(spec))
-        os.system("spack install {}".format(spec))

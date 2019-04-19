@@ -4,7 +4,7 @@ spack_config:   /lustre/home/acct-hpc/hpc-jianwen/.spack
 spack_home:     /lustre/kcaps
 
 # Externally installed packages
-packages:
+packages: null
 
 compilers:
   - compiler:
