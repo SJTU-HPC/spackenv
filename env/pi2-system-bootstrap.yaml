@@ -1,0 +1,5 @@
+---
+spack_root:     /lustre/kcaps
+spack_conf:     /lustre/home/rpm/.spack
+spack_home:     /lustre/kcaps
+

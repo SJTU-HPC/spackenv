@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+
+import argparse
+import yaml
+import os
+
+# Parse commandline options
+parser = argparse.ArgumentParser(description='Deploy Spack software environment')
+
+parser.add_argument('--env',
+	type=argparse.FileType('r'),
+	help='Environment file')
+parser.add_argument('--sync',
+	action='store_true',
+	help='Sync cached source files to the mirror site')
+
+args = parser.parse_args()
+
+# Read variables from configuration file, and 
+# raise exception if $spack_root/bin/spack exists, and
+# create $spack_conf directory if necessary.
+env = yaml.load(args.env)
+if not os.path.isfile(os.path.join(env.spack_root, 'bin', 'spack')):
+	raise FileNotFoundError(errno.ENOENT,
+		os.strerror(errno.ENOENT),
+		os.path.join(env.spack_root, 'bin', 'spack'))
+		 
+# Set and write to spack conf file
+if 'conf' not in env.keys():
+	env['conf']['checksum'] = true
+	env['conf']['dirty'] = false
+	env['conf']['install_tree'] = os.path.join(env.spack_home, os.environ['platform'])
+	env['conf']['module_roots']['tcl'] = os.path.join(env.spack_home, 'share', 'spack', 'modules', os.environ['platform'])
+out = {}
+out['conf'] = env['conf']
+with open(os.path.join(env.spack_conf, 'config.yaml'), 'w') as outfile:
+	yaml.dump(out, outfile, default_flow_style=False)
+	
+# Run Spack if --sync is NOT set
+if args.sync:
+	print("Sync cached source files to the mirror site")
+

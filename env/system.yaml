@@ -1,0 +1,21 @@
+---
+spack_bin:      /lustre/kcaps
+spack_root:     /lustre/kcaps
+spack_conf:     /lustre/home/rpm/.spack
+spack_home:     /lustre/home/hpc-jianwen/spack
+
+conf:
+  checksum: true
+  dirty: false
+  install_tree: /lustre/spack/tools
+  module_roots:
+    dotkit: $spack/share/spack/dotkit
+    lmod: $spack/share/spack/lmod
+    tcl: $spack/share/spack/modules
+
+compilers:
+
+packages:
+
+install:
+
