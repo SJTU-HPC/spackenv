@@ -32,8 +32,8 @@ if not os.path.isfile(os.path.join(env['spack_root'], 'bin', 'spack')):
 	raise FileNotFoundError(errno.ENOENT,
 		os.strerror(errno.ENOENT),
 		os.path.join(env['spack_root'], 'bin', 'spack'))
-		 
-# Set and write to spack config file
+
+# Set and write to spack config file ~/.spack/config.yaml
 if 'config' not in env.keys():
 	env['config'] = {}
 	env['config']['checksum'] = True
@@ -46,6 +46,13 @@ out['config'] = env['config']
 with open(os.path.join(env['spack_config'], 'config.yaml'), 'w') as outfile:
 	yaml.dump(out, outfile, default_flow_style=False)
 
+# Write $spack_config/modules.yaml
+out = {}
+out['modules'] = env['modules']
+if out['modules'] is not None:
+    with open(os.path.join(env['spack_config'], 'modules.yaml'), 'w') as outfile:
+    	yaml.dump(out, outfile, default_flow_style=False)
+
 # Write $spack_config/packages.yaml
 out = {}
 out['packages'] = env['packages']
@@ -56,13 +63,13 @@ if out['packages'] is not None:
 # Write $spack_config/linux/compilers.yaml
 out = {}
 out['compilers'] = env['compilers']
-with open(os.path.join(env['spack_config'], 'linux', 'compilers.yaml'), 'w') as outfile:
+with open(os.path.join(env['spack_config'], 'compilers.yaml'), 'w') as outfile:
 	yaml.dump(out, outfile, default_flow_style=False)
 
 # Write $spack_config/linux/mirrors.yaml
 out = {}
 out['mirrors'] = env['mirrors']
-with open(os.path.join(env['spack_config'], 'linux', 'mirrors.yaml'), 'w') as outfile:
+with open(os.path.join(env['spack_config'], 'mirrors.yaml'), 'w') as outfile:
 	yaml.dump(out, outfile, default_flow_style=False)
 
 # Add settings to ~/.bashrc
@@ -77,3 +84,5 @@ if args.sync:
 for p in env['install']:
 	install_from_spack(p)
 
+# Refresh TCL modulefiles
+os.system("spack module tcl refresh --delete-tree -y")

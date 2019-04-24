@@ -3,6 +3,30 @@ spack_root:     /lustre/kcaps
 spack_config:   /lustre/home/acct-hpc/hpc-jianwen/.spack
 spack_home:     /lustre/kcaps
 
+modules:
+  tcl:
+    hash_length: 0
+    naming_scheme: '{name}/{version}-{compiler.name}-{compiler.version}'
+    blacklist:
+      - 'autoconf'
+      - 'automake'
+      - 'gdbm'
+      - 'gmp'
+      - 'isl'
+      - 'libsigsegv'
+      - 'libtool'
+      - 'm4'
+      - 'mpc'
+      - 'mpfr'
+      - 'ncurses'
+      - 'pkgconf'
+      - 'readline'
+      - 'perl%gcc@4.8.5'
+      - 'zlib%gcc@4.8.5'
+    all:
+      conflict:
+        - '{name}' 
+
 # Externally installed packages
 packages: null
 
