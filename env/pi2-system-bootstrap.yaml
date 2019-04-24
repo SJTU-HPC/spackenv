@@ -52,3 +52,6 @@ install:
   - 'gcc@5.4.0 %gcc@4.8.5'
   - 'gcc@8.3.0 %gcc@4.8.5'
   - 'intel@19.0.3 %gcc@4.8.5'
+  - 'pgi@19.1+nvidia+single~network %gcc@4.8.5'
+  - 'miniconda2@4.5.11 %gcc@4.8.5'
+  - 'miniconda3@4.5.11 %gcc@4.8.5'

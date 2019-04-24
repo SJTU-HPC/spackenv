@@ -4,8 +4,13 @@ import argparse
 import yaml
 import os
 import subprocess
+import shutil
 
 def install_from_spack(spec):
+    # Delete ~/.intel
+    intel_home = os.path.join('~', '.intel')
+    if os.path.isdir(intel_home):
+        shutil.rmtree(intel_home)
     # Install the spec package if absent
     if "No package" in subprocess.check_output("spack find {}".format(spec), shell=True).decode("utf-8"):
         print("{} not found. Build it.".format(spec))
