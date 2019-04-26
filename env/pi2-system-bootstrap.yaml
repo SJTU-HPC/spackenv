@@ -30,6 +30,20 @@ modules:
 # Externally installed packages
 packages: null
 
+install: []
+
+msg: |
+  Please run the following commands manually to install compilers:   
+   
+  spack install gcc@8.3.0 %gcc@4.8.5
+  spack install intel@19.0.3 %gcc@4.8.5
+  spack install pgi@18.10+nvidia+single~network %gcc@4.8.5
+
+  Then add the following to your ~/.bashrc:
+  
+  export SPACK_ROOT=/lustre/kcaps
+  source $SPACK_ROOT/share/spack/setup-env.sh 
+
 compilers:
   - compiler:
       environment: {}
@@ -47,9 +61,3 @@ compilers:
 
 mirrors:
   remote_server: http://spack.pi.sjtu.edu.cn/mirror
-
-install:
-  - 'gcc@5.4.0 %gcc@4.8.5'
-  - 'gcc@8.3.0 %gcc@4.8.5'
-  - 'intel@19.0.3 %gcc@4.8.5'
-  - 'pgi@18.10+nvidia+single~network %gcc@4.8.5'

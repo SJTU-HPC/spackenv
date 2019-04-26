@@ -11,6 +11,10 @@ def install_from_spack(spec, env):
     intel_home = os.path.join('~', '.intel')
     if os.path.isdir(intel_home):
         shutil.rmtree(intel_home)
+    # Delete ~/intel
+    intel_home = os.path.join('~', 'intel')
+    if os.path.isdir(intel_home):
+        shutil.rmtree(intel_home)
     # Delete cached intel license
     intel_lic = os.path.join(env['spack_root'], 'etc', 'spack', 'licenses', 'intel', 'license.lic')
     if os.path.isfile(intel_lic):
@@ -84,8 +88,8 @@ out['mirrors'] = env['mirrors']
 with open(os.path.join(env['spack_config'], 'mirrors.yaml'), 'w') as outfile:
 	yaml.dump(out, outfile, default_flow_style=False)
 
-# Add settings to ~/.bashrc
-print("Spack environment has beeen initialized succesfully. Please add the following to the end of your ~/.bashrc file:\n\nexport SPACK_ROOT=%s\nsource $SPACK_ROOT/share/spack/setup-env.sh" % env['spack_root'])
+# Print the messsage
+print(env['msg'])
 
 # Run Spack if --sync is NOT set
 if args.sync:

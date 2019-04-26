@@ -11,15 +11,20 @@ modules:
       - 'autoconf'
       - 'automake'
       - 'bzip2'
+      - 'bison'
+      - 'cgal'
       - 'diffutils'
+      - 'flex'
       - 'expat'
       - 'gettext'
       - 'glib'
       - 'gdbm'
       - 'gmp'
       - 'hwloc'
+      - 'help2man'
       - 'isl'
       - 'json-c'
+      - 'kahip'
       - 'libarchive'
       - 'libsigsegv'
       - 'libtool'
@@ -44,10 +49,12 @@ modules:
       - 'pcre'
       - 'pkgconf'
       - 'perl%gcc@4.8.5'
+      - 'py-setuptools'
       - 'readline'
       - 'rhash'
       - 'sqlite'
       - 'slurm'
+      - 'scotch'
       - 'tar'
       - 'util-macros'
       - 'xz'
@@ -71,6 +78,13 @@ packages:
     paths:
       slurm@17-11-9-2: /usr
     buildable: False
+
+msg: |
+  Please add the following to your ~/.bashrc:
+  
+  export SPACK_ROOT=/lustre/kcaps
+  source $SPACK_ROOT/share/spack/setup-env.sh 
+
 
 compilers:
   - compiler:
@@ -119,10 +133,10 @@ compilers:
       modules: []
       operating_system: centos7
       paths:
-        cc:  /lustre/kcaps/sandybridge/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv/compilers_and_libraries_2019.3.199/linux/bin/intel64/icc
-        cxx: /lustre/kcaps/sandybridge/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv/compilers_and_libraries_2019.3.199/linux/bin/intel64/icpc
-        f77: /lustre/kcaps/sandybridge/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv/compilers_and_libraries_2019.3.199/linux/bin/intel64/ifort
-        fc:  /lustre/kcaps/sandybridge/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv/compilers_and_libraries_2019.3.199/linux/bin/intel64/ifort
+        cc:  /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv/compilers_and_libraries_2019.3.199/linux/bin/intel64/icc
+        cxx: /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv/compilers_and_libraries_2019.3.199/linux/bin/intel64/icpc
+        f77: /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv/compilers_and_libraries_2019.3.199/linux/bin/intel64/ifort
+        fc:  /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv/compilers_and_libraries_2019.3.199/linux/bin/intel64/ifort
       spec: intel@19.0.3
       target: x86_64
 
@@ -137,5 +151,12 @@ install:
   - 'miniconda3@4.6.14 %gcc@8.3.0'
   - 'miniconda2@4.6.14 %intel@19.0.3'
   - 'miniconda3@4.6.14 %intel@19.0.3'
+  - 'cuda@9.0.176 %gcc@8.3.0'
+  - 'cuda@9.0.176 %intel@19.0.3'
+  - 'cuda@10.0.130 %gcc@8.3.0'
+  - 'cuda@10.0.130 %intel@19.0.3'
+  - 'jdk@11.0.2_9 %gcc@8.3.0'
+  - 'jdk@11.0.2_9 %intel@19.0.3'
   - 'openmpi@3.1.4+pmi fabrics=libfabric schedulers=slurm %gcc@8.3.0'
   - 'openmpi@3.1.4+pmi fabrics=libfabric schedulers=slurm %intel@19.0.3'
+  - 'openfoam@1812+metis %gcc@8.3.0 ^openmpi@3.1.4+pmi fabrics=libfabric schedulers=slurm'
