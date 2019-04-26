@@ -6,11 +6,15 @@ import os
 import subprocess
 import shutil
 
-def install_from_spack(spec):
+def install_from_spack(spec, env):
     # Delete ~/.intel
     intel_home = os.path.join('~', '.intel')
     if os.path.isdir(intel_home):
         shutil.rmtree(intel_home)
+    # Delete cached intel license
+    intel_lic = os.path.join(env['spack_root'], 'etc', 'spack', 'licenses', 'intel', 'license.lic')
+    if os.path.isfile(intel_lic):
+        os.remove(intel_lic)
     # Install the spec package if absent
     if "No package" in subprocess.check_output("spack find {}".format(spec), shell=True).decode("utf-8"):
         print("{} not found. Build it.".format(spec))
@@ -22,6 +26,9 @@ parser = argparse.ArgumentParser(description='Deploy Spack software environment'
 parser.add_argument('--env',
 	type=argparse.FileType('r'),
 	help='Environment file')
+parser.add_argument('--install',
+	action='store_true',
+	help='Install packages')
 parser.add_argument('--sync',
 	action='store_true',
 	help='Sync cached source files to the mirror site')
@@ -43,7 +50,7 @@ if 'config' not in env.keys():
 	env['config'] = {}
 	env['config']['checksum'] = True
 	env['config']['dirty'] = False
-	env['config']['install_tree'] = os.path.join(env['spack_home'], os.environ['PLATFORM'])
+	env['config']['install_tree'] = os.path.join(env['spack_home'], 'opt', os.environ['PLATFORM'])
 	env['config']['module_roots'] = {}
 	env['config']['module_roots']['tcl'] = os.path.join(env['spack_home'], 'share', 'spack', 'modules', os.environ['PLATFORM'])
 out = {}
@@ -86,8 +93,9 @@ if args.sync:
         os.system("rsync -avr --progress %s/var/spack/cache/ root@lb://var/lib/www/spack.pi.sjtu.edu.cn/mirror/" % env['spack_home'])
 
 # Install packages
-for p in env['install']:
-	install_from_spack(p)
+if args.install:
+ 	for p in env['install']:
+ 		install_from_spack(p, env)
 
 # Refresh TCL modulefiles
 os.system("spack module tcl refresh --delete-tree -y")

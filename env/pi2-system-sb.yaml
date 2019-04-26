@@ -1,7 +1,7 @@
 ---
 spack_root:     /lustre/kcaps
 spack_config:   /lustre/home/acct-hpc/hpc-jianwen/.spack
-spack_home:     /lustre/kcaps
+spack_home:     /lustre
 
 modules:
   tcl:
@@ -93,10 +93,10 @@ compilers:
       modules: []
       operating_system: centos7
       paths:
-        cc:  /lustre/kcaps/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gcc
-        cxx: /lustre/kcaps/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/g++
-        f77: /lustre/kcaps/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gfortran
-        fc:  /lustre/kcaps/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gfortran
+        cc:  /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gcc
+        cxx: /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/g++
+        f77: /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gfortran
+        fc:  /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gfortran
       spec: gcc@5.4.0
       target: x86_64
   - compiler:
@@ -106,10 +106,10 @@ compilers:
       modules: []
       operating_system: centos7
       paths:
-        cc:  /lustre/kcaps/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gcc
-        cxx: /lustre/kcaps/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/g++
-        f77: /lustre/kcaps/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gfortran
-        fc:  /lustre/kcaps/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gfortran
+        cc:  /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gcc
+        cxx: /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/g++
+        f77: /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gfortran
+        fc:  /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gfortran
       spec: gcc@8.3.0
       target: x86_64
   - compiler:
@@ -133,5 +133,9 @@ install:
   - 'intel-mpi@2019.3.199 %intel@19.0.3'
   - 'intel-mkl@2019.3.199 %intel@19.0.3'
   - 'intel-mkl-dnn@0.11 %intel@19.0.3'
+  - 'miniconda2@4.6.14 %gcc@8.3.0'
+  - 'miniconda3@4.6.14 %gcc@8.3.0'
+  - 'miniconda2@4.6.14 %intel@19.0.3'
+  - 'miniconda3@4.6.14 %intel@19.0.3'
   - 'openmpi@3.1.4+pmi fabrics=libfabric schedulers=slurm %gcc@8.3.0'
   - 'openmpi@3.1.4+pmi fabrics=libfabric schedulers=slurm %intel@19.0.3'
