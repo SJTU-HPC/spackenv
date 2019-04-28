@@ -8,11 +8,11 @@ import shutil
 
 def install_from_spack(spec, env):
     # Delete ~/.intel
-    intel_home = os.path.join('~', '.intel')
+    intel_home = os.path.join(os.environ['HOME'], '.intel')
     if os.path.isdir(intel_home):
         shutil.rmtree(intel_home)
     # Delete ~/intel
-    intel_home = os.path.join('~', 'intel')
+    intel_home = os.path.join(os.environ['HOME'], 'intel')
     if os.path.isdir(intel_home):
         shutil.rmtree(intel_home)
     # Delete cached intel license
