@@ -76,13 +76,13 @@ if out['packages'] is not None:
     with open(os.path.join(env['spack_config'], 'packages.yaml'), 'w') as outfile:
     	yaml.dump(out, outfile, default_flow_style=False)
 
-# Write $spack_config/linux/compilers.yaml
+# Write $spack_config/compilers.yaml
 out = {}
 out['compilers'] = env['compilers']
 with open(os.path.join(env['spack_config'], 'compilers.yaml'), 'w') as outfile:
 	yaml.dump(out, outfile, default_flow_style=False)
 
-# Write $spack_config/linux/mirrors.yaml
+# Write $spack_config/mirrors.yaml
 out = {}
 out['mirrors'] = env['mirrors']
 with open(os.path.join(env['spack_config'], 'mirrors.yaml'), 'w') as outfile:
