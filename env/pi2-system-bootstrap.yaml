@@ -33,7 +33,7 @@ packages: null
 install: []
 
 msg: |
-  Please run the following commands manually to install compilers:   
+  Please run the following commands manually to install compilers and update compilers settings in env:
    
   spack install gcc@5.4.0 %gcc@4.8.5
   spack install gcc@8.3.0 %gcc@4.8.5
