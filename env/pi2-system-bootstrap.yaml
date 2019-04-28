@@ -35,6 +35,7 @@ install: []
 msg: |
   Please run the following commands manually to install compilers:   
    
+  spack install gcc@5.4.0 %gcc@4.8.5
   spack install gcc@8.3.0 %gcc@4.8.5
   spack install intel@19.0.3 %gcc@4.8.5
   spack install pgi@18.10+nvidia+single~network %gcc@4.8.5
@@ -43,6 +44,8 @@ msg: |
   
   export SPACK_ROOT=/lustre/kcaps
   source $SPACK_ROOT/share/spack/setup-env.sh 
+
+  export MODULEPATH=$MODULEPATH:/lustre/opt/share/spack/modules/sandybridge
 
 compilers:
   - compiler:
