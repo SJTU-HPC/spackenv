@@ -170,4 +170,4 @@ install:
   - 'openmpi@4.0.1+pmi fabrics=libfabric schedulers=slurm %gcc@8.3.0'
   - 'openmpi@4.0.1+pmi fabrics=libfabric schedulers=slurm %intel@19.0.3'
   - 'openfoam@1812+metis %gcc@8.3.0 ^openmpi@4.0.1+pmi fabrics=libfabric schedulers=slurm'
-  - 'lammps@20180822+class2+colloid+compress+coreshell+dipole+granular+kspace+lib+manybody+mc+meam+misc+molecule+mpi+mpiio+peri+poems+python+qeq+reax+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp %gcc@8.3.0 ^openmpi@4.0.1+pmi fabrics=libfabric schedulers=slurm ^openblas threads=openmp'
+  - 'lammps@20180822+class2+colloid+compress+coreshell+dipole+granular+kspace+lib+manybody+mc+meam+misc+molecule+mpi+mpiio+peri+poems+python+qeq+reax+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp %gcc@8.3.0 ^openmpi@4.0.1+pmi fabrics=libfabric schedulers=slurm ^openblas+avx2+avx512 threads=openmp'
