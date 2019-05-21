@@ -49,6 +49,14 @@ if not os.path.isfile(os.path.join(env['spack_root'], 'bin', 'spack')):
 		os.strerror(errno.ENOENT),
 		os.path.join(env['spack_root'], 'bin', 'spack'))
 
+# Prepare $HOME/.spack,  $spack_home/opt, $spack_home/share
+if not os.path.exists(os.path.join(os.environ['HOME'], '.spack')):
+        os.mkdir(os.path.join(os.environ['HOME'], '.spack'))
+if not os.path.exists(os.path.join(os.environ['spack_home'], 'opt')):
+        os.mkdir(os.path.join(os.environ['spack_home'], 'opt'))
+if not os.path.exists(os.path.join(os.environ['spack_home'], 'share')):
+        os.mkdir(os.path.join(os.environ['spack_home'], 'share'))
+
 # Set and write to spack config file ~/.spack/config.yaml
 if 'config' not in env.keys():
 	env['config'] = {}

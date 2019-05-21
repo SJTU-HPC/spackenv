@@ -1,6 +1,6 @@
 ---
-spack_root:     /lustre/kcaps
-spack_config:   /lustre/home/acct-hpc/hpc-jianwen/.spack
+spack_root:     /lustre/spack
+spack_config:   /lustre/home/rpm/.spack
 spack_home:     /lustre
 
 modules:
@@ -35,17 +35,17 @@ install: []
 msg: |
   Please run the following commands manually to install compilers and update compilers settings in env:
    
-  spack install gcc@5.4.0 %gcc@4.8.5
-  spack install gcc@8.3.0 %gcc@4.8.5
-  spack install intel@19.0.3 %gcc@4.8.5
-  spack install pgi@18.10+nvidia+single~network %gcc@4.8.5
+  /lustre/spack/bin/spack install gcc@5.4.0 %gcc@4.8.5
+  /lustre/spack/bin/spack install gcc@8.3.0 %gcc@4.8.5
+  /lustre/spack/bin/spack install intel@19.0.3 %gcc@4.8.5
+  /lustre/spack/bin/spack install pgi@18.10+nvidia+single~network %gcc@4.8.5
 
   Then add the following to your ~/.bashrc:
   
-  export SPACK_ROOT=/lustre/kcaps
+  export SPACK_ROOT=/lustre/spack
   source $SPACK_ROOT/share/spack/setup-env.sh 
 
-  export MODULEPATH=$MODULEPATH:/lustre/opt/share/spack/modules/sandybridge
+  export MODULEPATH=$MODULEPATH:/lustre/opt/share/spack/modules/cascadelake
 
 compilers:
   - compiler:
