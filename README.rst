@@ -12,7 +12,7 @@ then edit ``env/pi2-system-sb.yaml``  and install system software
 
 :: 
 
-  $ export PLATFORM=cascadelake; ./install --env env/pi2-system-cascadelake.yaml --install
+  $ export PLATFORM=cascadelake; ./install --env env/pi2-system-cascadelake.yaml
 
 Sync cached source packages to mirror
 =====================================

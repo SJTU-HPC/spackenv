@@ -122,10 +122,10 @@ compilers:
       modules: []
       operating_system: centos7
       paths:
-        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv/bin/gcc
-        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv/bin/g++
-        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv/bin/gfortran
-        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv/bin/gfortran
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gcc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/g++
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gfortran
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gfortran
       spec: gcc@8.3.0
       target: x86_64
   - compiler:
