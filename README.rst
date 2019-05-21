@@ -6,13 +6,13 @@ Initialize your Spack environment with pre-defined environments.
 
 ::
 
-  $ export PLATFORM=sandybridge; ./install --env env/pi2-system-bootstrap.yaml
+  $ export PLATFORM=cascadelake; ./install --env env/pi2-system-bootstrap.yaml
 
 then edit ``env/pi2-system-sb.yaml``  and install system software
 
 :: 
 
-  $ export PLATFORM=sandybridge; ./install --env env/pi2-system-sb.yaml
+  $ export PLATFORM=cascadelake; ./install --env env/pi2-system-cascadelake.yaml
 
 Sync cached source packages to mirror
 =====================================

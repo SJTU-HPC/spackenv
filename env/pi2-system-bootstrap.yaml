@@ -1,7 +1,7 @@
 ---
-spack_root:     /lustre/spack
-spack_config:   /lustre/home/rpm/.spack
-spack_home:     /lustre
+spack_config:           /lustre/home/rpm/.spack
+spack_bin_root:         /lustre/spack
+spack_install_root:     /lustre
 
 modules:
   tcl:
