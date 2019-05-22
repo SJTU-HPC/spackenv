@@ -86,10 +86,9 @@ packages:
 
 msg: |
   Please add the following to your ~/.bashrc:
-  
-  export SPACK_ROOT=/lustre/kcaps
+    
+  export SPACK_ROOT=/lustre/spack
   source $SPACK_ROOT/share/spack/setup-env.sh 
-
 
 compilers:
   - compiler:
