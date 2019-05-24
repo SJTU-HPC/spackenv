@@ -151,10 +151,12 @@ mirrors:
   remote_server: http://spack.pi.sjtu.edu.cn/mirror
 
 install:
-  - 'intel-parallel-studio@cluster.2019.3+advisor+clck+daal+inspector+ipp+itac+mkl+mpi+tbb+vtune %intel@19.0.3 threads=openmp'
+  - 'intel-parallel-studio@cluster.2019.3+advisor+clck+daal+inspector+ipp+itac+mkl+mpi+tbb+vtune %gcc@4.8.5 threads=openmp'
   - 'intel-mpi@2019.3.199 %intel@19.0.3'
+  - 'intel-mpi@2019.3.199 %gcc@8.3.0'
   - 'intel-mkl@2019.3.199 %intel@19.0.3'
-  - 'intel-mkl-dnn@0.11 %intel@19.0.3 ^intel-mkl'
+  - 'intel-mkl@2019.3.199 %gcc@8.3.0'
+  - 'intel-mkl-dnn %intel@19.0.3 ^gnutls%gcc@8.3.0'
   - 'miniconda2@4.6.14 %gcc@8.3.0'
   - 'miniconda3@4.6.14 %gcc@8.3.0'
   - 'miniconda2@4.6.14 %intel@19.0.3'
@@ -168,7 +170,7 @@ install:
   - 'openblas+avx2+avx512 %gcc@8.3.0 threads=openmp'
   - 'openblas+avx2+avx512 %intel@19.0.3 threads=openmp'
   - 'bowtie2 %gcc@8.3.0'
-  - 'bowtie2 %intel@19.0.3'
+  - 'bowtie2 %intel@19.0.3 ^gnutls%gcc@8.3.0'
   - 'bwa %gcc@8.3.0'
   - 'bwa %intel@19.0.3'
   - 'samtools %gcc@8.3.0'
