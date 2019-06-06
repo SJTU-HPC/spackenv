@@ -176,6 +176,8 @@ install:
   - 'bwa %intel@19.0.3'
   - 'samtools %gcc@8.3.0'
   - 'samtools %intel@19.0.3'
+  - 'stream+openmp %intel@19.0.3 cflags="-O3 -xHost -ffreestanding -fopenmp"'
+  - 'stream+openmp %gcc@8.3.0 cflags="-O3 -fopenmp"'
   - 'openmpi@4.0.1+pmi fabrics=libfabric schedulers=slurm %gcc@8.3.0' # Use libfabric@1.6.2 shipped with OS to build against GCC
   - 'openmpi@4.0.1+pmi fabrics=libfabric schedulers=slurm %intel@19.0.3'
   - 'mpich+hydra+romio+slurm netmod=ofi %gcc@8.3.0'
