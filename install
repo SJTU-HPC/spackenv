@@ -51,7 +51,7 @@ if not os.path.isfile(os.path.join(env['spack_bin_root'], 'bin', 'spack')):
 # Create ~/.spack directory if absent.
 if not os.path.exists(os.path.join(os.environ['HOME'], '.spack')):
         os.mkdir(os.path.join(os.environ['HOME'], '.spack'))
-# Create $spack_install_root if absent 
+# Create $spack_install_root if absent
 if not os.path.exists(env['spack_install_root']):
         os.mkdir(env['spack_install_root'])
 # Crate $spack_modules_root if absent
@@ -77,34 +77,31 @@ if 'modules' not in env.keys():
     env['modules']['tcl'] = {}
     env['modules']['tcl']['hash_length'] = '0'
     env['modules']['tcl']['naming_scheme'] = "'{name}/{version}-{compiler.name}-{compiler.version}'"
-    env['modules']['tcl']['all'] = {} 
-    env['modules']['tcl']['all']['conflict'] = "'{name}'" 
+    env['modules']['tcl']['all'] = {}
+    env['modules']['tcl']['all']['conflict'] = "'{name}'"
 out = {}
 out['modules'] = env['modules']
 with open(os.path.join(os.environ['HOME'], '.spack', 'modules.yaml'), 'w') as outfile:
 	yaml.dump(out, outfile, default_flow_style=False)
 
-# Write $spack_config/packages.yaml
+# Write ~/.spack/packages.yaml
 out = {}
 out['packages'] = env['packages']
 if out['packages'] is not None:
-    with open(os.path.join(env['spack_config'], 'packages.yaml'), 'w') as outfile:
+    with open(os.path.join(os.environ['HOME'], 'packages.yaml'), 'w') as outfile:
     	yaml.dump(out, outfile, default_flow_style=False)
 
 # Write $spack_config/compilers.yaml
 out = {}
 out['compilers'] = env['compilers']
-with open(os.path.join(env['spack_config'], 'compilers.yaml'), 'w') as outfile:
+with open(os.path.join(os.environ['HOME'], 'compilers.yaml'), 'w') as outfile:
 	yaml.dump(out, outfile, default_flow_style=False)
 
 # Write $spack_config/mirrors.yaml
 out = {}
 out['mirrors'] = env['mirrors']
-with open(os.path.join(env['spack_config'], 'mirrors.yaml'), 'w') as outfile:
+with open(os.path.join(os.environ['HOME'], 'mirrors.yaml'), 'w') as outfile:
 	yaml.dump(out, outfile, default_flow_style=False)
-
-# Print the messsage
-print(env['msg'])
 
 # Run Spack if --sync is NOT set
 if args.sync:
