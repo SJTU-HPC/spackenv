@@ -1,0 +1,34 @@
+---
+spack_bin_root:         /lustre/spack
+spack_install_root:     /lustre/opt/sandybridge
+spack_modules_root:     /lustre/share/spack/modules/sandybridge
+
+modules:
+  tcl:
+    hash_length: 0
+    naming_scheme: '{name}/{version}-{compiler.name}-{compiler.version}'
+    all:
+      conflict:
+        - '{name}' 
+
+compilers:
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc: /usr/bin/gcc
+        cxx: /usr/bin/g++
+        f77: /usr/bin/gfortran
+        fc: /usr/bin/gfortran
+      spec: gcc@4.8.5
+      target: x86_64
+
+packages: []
+
+install: []
+
+mirrors:
+  remote_server: http://spack.pi.sjtu.edu.cn/mirror
