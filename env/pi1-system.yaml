@@ -26,9 +26,9 @@ compilers:
       spec: gcc@4.8.5
       target: x86_64
 
-packages: []
+packages: null
 
-install: []
+install: null
 
 mirrors:
   remote_server: http://spack.pi.sjtu.edu.cn/mirror
