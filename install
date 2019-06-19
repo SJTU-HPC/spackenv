@@ -39,43 +39,50 @@ parser.add_argument('--sync',
 
 args = parser.parse_args()
 
-# Read variables from configuration file, and 
-# raise exception if $spack_bin_root/bin/spack exists, and
-# create $spack_conf directory if necessary.
+# Read variables from configuration file
 env = yaml.load(args.env)
 
+# Raise exception if $spack_bin_root/bin/spack exists
 if not os.path.isfile(os.path.join(env['spack_bin_root'], 'bin', 'spack')):
 	raise FileNotFoundError(errno.ENOENT,
 		os.strerror(errno.ENOENT),
 		os.path.join(env['spack_bin_root'], 'bin', 'spack'))
 
-# Prepare $HOME/.spack,  $spack_install_root/opt, $spack_install_root/share
+# Create ~/.spack directory if absent.
 if not os.path.exists(os.path.join(os.environ['HOME'], '.spack')):
         os.mkdir(os.path.join(os.environ['HOME'], '.spack'))
-if not os.path.exists(os.path.join(env['spack_install_root'], 'opt')):
-        os.mkdir(os.path.join(env['spack_install_root'], 'opt'))
-if not os.path.exists(os.path.join(env['spack_install_root'], 'share')):
-        os.mkdir(os.path.join(env['spack_install_root'], 'share'))
+# Create $spack_install_root if absent 
+if not os.path.exists(env['spack_install_root']):
+        os.mkdir(env['spack_install_root'])
+# Crate $spack_modules_root if absent
+if not os.path.exists(os.path.join(env['spack_modules_root'])):
+        os.mkdir(os.path.join(env['spack_modules_root']))
 
 # Set and write to spack config file ~/.spack/config.yaml
 if 'config' not in env.keys():
 	env['config'] = {}
 	env['config']['checksum'] = True
 	env['config']['dirty'] = False
-	env['config']['install_tree'] = os.path.join(env['spack_install_root'], 'opt', os.environ['PLATFORM'])
+	env['config']['install_tree'] = env['spack_install_root']
 	env['config']['module_roots'] = {}
-	env['config']['module_roots']['tcl'] = os.path.join(env['spack_install_root'], 'share', 'spack', 'modules', os.environ['PLATFORM'])
+	env['config']['module_roots']['tcl'] = env['spack_modules_root']
 out = {}
 out['config'] = env['config']
-with open(os.path.join(env['spack_config'], 'config.yaml'), 'w') as outfile:
+with open(os.path.join(os.environ['HOME'], '.spack', 'config.yaml'), 'w') as outfile:
 	yaml.dump(out, outfile, default_flow_style=False)
 
-# Write $spack_config/modules.yaml
+# Write ~/.spack/modules.yaml
+if 'modules' not in env.keys():
+    env['modules'] = {}
+    env['modules']['tcl'] = {}
+    env['modules']['tcl']['hash_length'] = '0'
+    env['modules']['tcl']['naming_scheme'] = "'{name}/{version}-{compiler.name}-{compiler.version}'"
+    env['modules']['tcl']['all'] = {} 
+    env['modules']['tcl']['all']['conflict'] = "'{name}'" 
 out = {}
 out['modules'] = env['modules']
-if out['modules'] is not None:
-    with open(os.path.join(env['spack_config'], 'modules.yaml'), 'w') as outfile:
-    	yaml.dump(out, outfile, default_flow_style=False)
+with open(os.path.join(os.environ['HOME'], '.spack', 'modules.yaml'), 'w') as outfile:
+	yaml.dump(out, outfile, default_flow_style=False)
 
 # Write $spack_config/packages.yaml
 out = {}
