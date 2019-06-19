@@ -16,7 +16,7 @@ def install_from_spack(spec, env):
     if os.path.isdir(intel_home):
         shutil.rmtree(intel_home)
     # Delete cached intel license
-    intel_lic = os.path.join(env['spack_root'], 'etc', 'spack', 'licenses', 'intel', 'license.lic')
+    intel_lic = os.path.join(env['spack_bin_root'], 'etc', 'spack', 'licenses', 'intel', 'license.lic')
     if os.path.isfile(intel_lic):
         os.remove(intel_lic)
     # Install the spec package if absent
@@ -40,23 +40,31 @@ parser.add_argument('--sync',
 args = parser.parse_args()
 
 # Read variables from configuration file, and 
-# raise exception if $spack_root/bin/spack exists, and
+# raise exception if $spack_bin_root/bin/spack exists, and
 # create $spack_conf directory if necessary.
 env = yaml.load(args.env)
 
-if not os.path.isfile(os.path.join(env['spack_root'], 'bin', 'spack')):
+if not os.path.isfile(os.path.join(env['spack_bin_root'], 'bin', 'spack')):
 	raise FileNotFoundError(errno.ENOENT,
 		os.strerror(errno.ENOENT),
-		os.path.join(env['spack_root'], 'bin', 'spack'))
+		os.path.join(env['spack_bin_root'], 'bin', 'spack'))
+
+# Prepare $HOME/.spack,  $spack_install_root/opt, $spack_install_root/share
+if not os.path.exists(os.path.join(os.environ['HOME'], '.spack')):
+        os.mkdir(os.path.join(os.environ['HOME'], '.spack'))
+if not os.path.exists(os.path.join(env['spack_install_root'], 'opt')):
+        os.mkdir(os.path.join(env['spack_install_root'], 'opt'))
+if not os.path.exists(os.path.join(env['spack_install_root'], 'share')):
+        os.mkdir(os.path.join(env['spack_install_root'], 'share'))
 
 # Set and write to spack config file ~/.spack/config.yaml
 if 'config' not in env.keys():
 	env['config'] = {}
 	env['config']['checksum'] = True
 	env['config']['dirty'] = False
-	env['config']['install_tree'] = os.path.join(env['spack_home'], 'opt', os.environ['PLATFORM'])
+	env['config']['install_tree'] = os.path.join(env['spack_install_root'], 'opt', os.environ['PLATFORM'])
 	env['config']['module_roots'] = {}
-	env['config']['module_roots']['tcl'] = os.path.join(env['spack_home'], 'share', 'spack', 'modules', os.environ['PLATFORM'])
+	env['config']['module_roots']['tcl'] = os.path.join(env['spack_install_root'], 'share', 'spack', 'modules', os.environ['PLATFORM'])
 out = {}
 out['config'] = env['config']
 with open(os.path.join(env['spack_config'], 'config.yaml'), 'w') as outfile:
@@ -94,7 +102,7 @@ print(env['msg'])
 # Run Spack if --sync is NOT set
 if args.sync:
 	print("Sync cached source files to the mirror site")
-        os.system("rsync -avr --progress %s/var/spack/cache/ root@lb://var/lib/www/spack.pi.sjtu.edu.cn/mirror/" % env['spack_root'])
+        os.system("rsync -avr --progress %s/var/spack/cache/ root@lb://var/lib/www/spack.pi.sjtu.edu.cn/mirror/" % env['spack_bin_root'])
 
 # Install packages
 if args.install:
