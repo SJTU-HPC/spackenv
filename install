@@ -36,6 +36,9 @@ parser.add_argument('--install',
 parser.add_argument('--sync',
 	action='store_true',
 	help='Sync cached source files to the mirror site')
+parser.add_argument('--refresh',
+	action='store_true',
+	help='Refresh Spack environment modules')
 
 args = parser.parse_args()
 
@@ -88,19 +91,19 @@ with open(os.path.join(os.environ['HOME'], '.spack', 'modules.yaml'), 'w') as ou
 out = {}
 out['packages'] = env['packages']
 if out['packages'] is not None:
-    with open(os.path.join(os.environ['HOME'], 'packages.yaml'), 'w') as outfile:
+    with open(os.path.join(os.environ['HOME'], '.spack', 'packages.yaml'), 'w') as outfile:
     	yaml.dump(out, outfile, default_flow_style=False)
 
-# Write $spack_config/compilers.yaml
+# Write ~/.spack/compilers.yaml
 out = {}
 out['compilers'] = env['compilers']
-with open(os.path.join(os.environ['HOME'], 'compilers.yaml'), 'w') as outfile:
+with open(os.path.join(os.environ['HOME'], '.spack', 'compilers.yaml'), 'w') as outfile:
 	yaml.dump(out, outfile, default_flow_style=False)
 
-# Write $spack_config/mirrors.yaml
+# Write ~/.spack/mirrors.yaml
 out = {}
 out['mirrors'] = env['mirrors']
-with open(os.path.join(os.environ['HOME'], 'mirrors.yaml'), 'w') as outfile:
+with open(os.path.join(os.environ['HOME'], '.spack', 'mirrors.yaml'), 'w') as outfile:
 	yaml.dump(out, outfile, default_flow_style=False)
 
 # Run Spack if --sync is NOT set
@@ -114,4 +117,5 @@ if args.install:
  		install_from_spack(p, env)
 
 # Refresh TCL modulefiles
-os.system("spack module tcl refresh --delete-tree -y")
+if args.refresh:
+    os.system("spack module tcl refresh --delete-tree -y")
