@@ -11,7 +11,63 @@ modules:
       conflict:
         - '{name}'
     blacklist:
+      - 'autoconf'
+      - 'automake'
+      - 'bzip2'
+      - 'bison'
+      - 'cgal'
+      - 'diffutils'
+      - 'flex'
+      - 'expat'
       - 'gettext'
+      - 'glib'
+      - 'gdbm'
+      - 'gettext'
+      - 'gmp'
+      - 'gnutls'
+      - 'hwloc'
+      - 'help2man'
+      - 'isl'
+      - 'json-c'
+      - 'kahip'
+      - 'libarchive'
+      - 'libidn2'
+      - 'libsigsegv'
+      - 'libtool'
+      - 'libfabric'
+      - 'libffi'
+      - 'libgcrypt'
+      - 'libgpg-error'
+      - 'libbsd'
+      - 'libiconv'
+      - 'libpciaccess'
+      - 'libuv'
+      - 'libunistring'
+      - 'libxml2'
+      - 'lz4'
+      - 'lzo'
+      - 'm4'
+      - 'mpc'
+      - 'mpfr'
+      - 'nettle'
+      - 'ncurses'
+      - 'numactl'
+      - 'openssl'
+      - 'pcre'
+      - 'pkgconf'
+      - 'perl%gcc@4.8.5'
+      - 'py-setuptools'
+      - 'readline'
+      - 'rhash'
+      - 'sqlite'
+      - 'slurm'
+      - 'scotch'
+      - 'tar'
+      - 'util-macros'
+      - 'xcb-proto'
+      - 'xz'
+      - 'zlib'
+
 
 compilers:
   - compiler:
@@ -67,7 +123,6 @@ compilers:
       spec: intel@19.0.4
       target: x86_64
 
-packages: null
 
 packages:
   all:
@@ -92,7 +147,8 @@ packages:
     paths:
       libfabric@1.6.2: /usr
 
-install: null
+install:
+  - 'octave+qt+llvm %gcc@8.3.0 ^openblas ^llvm@7.0.1'
 
 mirrors:
   remote_server: http://spack.pi.sjtu.edu.cn/mirror
