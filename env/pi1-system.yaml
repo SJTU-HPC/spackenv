@@ -91,7 +91,8 @@ packages:
     paths:
       libfabric@1.6.2: /usr
 
-install: null
+install:
+  - 'octave+qt+llvm %gcc@8.3.0 ^openblas ^llvm@7.0.1'
 
 mirrors:
   remote_server: http://spack.pi.sjtu.edu.cn/mirror
