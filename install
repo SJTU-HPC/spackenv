@@ -71,6 +71,7 @@ if 'config' not in env.keys():
     env['config']['module_roots']['tcl'] = env['spack_modules_root']
     env['config']['source_cache'] = os.path.join(os.environ['HOME'], '.spack', 'sourcecache')
     env['config']['misc_cache'] = os.path.join(os.environ['HOME'], '.spack', 'misccache')
+    env['config']['db_lock_timeout'] = 180
 out = {}
 out['config'] = env['config']
 with open(os.path.join(os.environ['HOME'], '.spack', 'config.yaml'), 'w') as outfile:
@@ -108,12 +109,6 @@ out['mirrors'] = env['mirrors']
 with open(os.path.join(os.environ['HOME'], '.spack', 'mirrors.yaml'), 'w') as outfile:
 	yaml.dump(out, outfile, default_flow_style=False)
 
-# Run Spack if --sync is NOT set
-if args.sync:
-	print("Sync cached source files to the mirror site")
-        os.system("rsync -avr --progress %s/ root@lb://var/lib/www/spack.pi.sjtu.edu.cn/mirror/"
-                  % os.path.join(os.environ['HOME'], '.spack', 'sourcecache'))
-
 # Install packages
 if args.install:
  	for p in env['install']:
@@ -122,3 +117,11 @@ if args.install:
 # Refresh TCL modulefiles
 if args.refresh:
     os.system("spack module tcl refresh --delete-tree -y")
+
+# Run Spack if --sync is NOT set
+if args.sync:
+	print("Sync cached source files to the mirror site")
+        os.system("rsync -avr --progress %s/ root@lb://var/lib/www/spack.pi.sjtu.edu.cn/mirror/"
+                  % os.path.join(os.environ['HOME'], '.spack', 'sourcecache'))
+
+
