@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import argparse
 import yaml
@@ -56,10 +56,10 @@ if not os.path.exists(os.path.join(os.environ['HOME'], '.spack')):
         os.mkdir(os.path.join(os.environ['HOME'], '.spack'))
 # Create $spack_install_root if absent
 if not os.path.exists(env['spack_install_root']):
-        os.mkdir(env['spack_install_root'])
+        os.makedirs(env['spack_install_root'], exist_ok=True)
 # Crate $spack_modules_root if absent
 if not os.path.exists(os.path.join(env['spack_modules_root'])):
-        os.mkdir(os.path.join(env['spack_modules_root']))
+        os.makedirs(os.path.join(env['spack_modules_root']), exist_ok=True)
 
 # Set and write to spack config file ~/.spack/config.yaml
 if 'config' not in env.keys():
@@ -120,8 +120,7 @@ if args.refresh:
 
 # Run Spack if --sync is NOT set
 if args.sync:
-	print("Sync cached source files to the mirror site")
-        os.system("rsync -avr --progress %s/ root@lb://var/lib/www/spack.pi.sjtu.edu.cn/mirror/"
-                  % os.path.join(os.environ['HOME'], '.spack', 'sourcecache'))
+    print("Sync cached source files to the mirror site")
+    os.system("rsync -avr --progress %s/ root@lb://var/lib/www/spack.pi.sjtu.edu.cn/mirror/" % os.path.join(os.environ['HOME'], '.spack', 'sourcecache'))
 
 
