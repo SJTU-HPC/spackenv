@@ -20,6 +20,7 @@ modules:
       - 'binutils'
       - 'cairo'
       - 'cgal'
+      - 'curl'
       - 'diffutils'
       - 'double-conversion'
       - 'fontconfig'
@@ -83,6 +84,7 @@ modules:
       - 'nettle'
       - 'ncurses'
       - 'numactl'
+      - 'nasm'
       - 'openssl'
       - 'pixman'
       - 'pcre'
@@ -115,6 +117,7 @@ modules:
       - 'xproto'
       - 'xtrans'
       - 'xz'
+      - 'yasm'
       - 'zlib'
 
 packages:

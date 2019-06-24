@@ -20,6 +20,7 @@ modules:
       - 'binutils'
       - 'cairo'
       - 'cgal'
+      - 'curl'
       - 'diffutils'
       - 'double-conversion'
       - 'fontconfig'
@@ -80,6 +81,7 @@ modules:
       - 'm4'
       - 'mpc'
       - 'mpfr'
+      - 'nasm'
       - 'nettle'
       - 'ncurses'
       - 'numactl'
@@ -115,6 +117,7 @@ modules:
       - 'xproto'
       - 'xtrans'
       - 'xz'
+      - 'yasm'
       - 'zlib'
 
 compilers:
@@ -170,6 +173,19 @@ compilers:
         fc:  /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.4-zxtvkrsgqvhud4og62e55kwgqvhy26d3/compilers_and_libraries_2019.4.243/linux/bin/intel64/ifort
       spec: intel@19.0.4
       target: x86_64
+- compiler:
+    environment: {}
+    extra_rpaths: []
+    flags: {}
+    modules: []
+    operating_system: centos7
+    paths:
+      cc:  /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgcc
+      cxx: /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgc++
+      f77: /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgfortran
+      fc:  /lustre/opt/sandybridge/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgf95
+    spec: pgi@19.4
+    target: x86_64
 
 packages:
   all:
@@ -186,6 +202,8 @@ packages:
     variants: threads=openmp
   openblas:
     variants: +avx2 threads=openmp
+  openmpi:
+    variants: +pmi +legacylaunchers fabrics=libfabric schedulers=slurm
   slurm:
     paths:
       slurm@17-11-9-13: /usr
@@ -203,7 +221,7 @@ install:
   - 'intel-mpi@2019.4.243 %gcc@8.3.0'
   - 'intel-mkl@2019.3.199 %intel@19.0.4'
   - 'intel-mkl@2019.3.199 %gcc@8.3.0'
-    # - 'intel-mkl-dnn %intel@19.0.4 ^gnutls%gcc@8.3.0'
+  # - 'intel-mkl-dnn %intel@19.0.4 ^gnutls%gcc@8.3.0'
   - 'miniconda2@4.6.14 %gcc@8.3.0'
   - 'miniconda3@4.6.14 %gcc@8.3.0'
   - 'miniconda2@4.6.14 %intel@19.0.4'
@@ -245,5 +263,5 @@ install:
   # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %intel@19.0.4'
   # - 'openfoam@1812+metis %gcc@8.3.0 ^openmpi@4.0.1+pmi fabrics=libfabric schedulers=slurm'
   - 'lammps@20180822+class2+colloid+compress+coreshell+dipole+granular+kspace+lib+manybody+mc+meam+misc+molecule+mpi+mpiio+peri+poems+python+qeq+reax+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp %gcc@8.3.0 ^openmpi@3.1.4^openblas ^libfabric@1.6.2'
-  - 'openfoam@1812+metis %gcc@8.3.0 ^openmpi@3.1.4
+  - 'openfoam@1812+metis %gcc@8.3.0 ^openmpi@3.1.4'
 
