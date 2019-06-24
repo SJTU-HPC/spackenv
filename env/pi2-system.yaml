@@ -200,6 +200,19 @@ compilers:
         fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.4-zxtvkrsgqvhud4og62e55kwgqvhy26d3/compilers_and_libraries_2019.4.243/linux/bin/intel64/ifort
       spec: intel@19.0.4
       target: x86_64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgcc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgc++
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgfortran
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgf95
+      spec: pgi@19.4
+      target: x86_64
 
 mirrors:
   remote_server: http://spack.pi.sjtu.edu.cn/mirror
