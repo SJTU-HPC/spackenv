@@ -5,6 +5,7 @@ import yaml
 import os
 import subprocess
 import shutil
+import errno
 
 def install_from_spack(spec, env):
     # Delete ~/.intel
@@ -16,7 +17,7 @@ def install_from_spack(spec, env):
     if os.path.isdir(intel_home):
         shutil.rmtree(intel_home)
     # Delete cached intel license
-    intel_lic = os.path.join(env['spack_bin_root'], 'etc', 'spack', 'licenses', 'intel', 'license.lic')
+    intel_lic = os.path.join(os.path.expanduser(env['spack_bin_root']), 'etc', 'spack', 'licenses', 'intel', 'license.lic')
     if os.path.isfile(intel_lic):
         os.remove(intel_lic)
     # Install the spec package if absent
@@ -46,20 +47,20 @@ args = parser.parse_args()
 env = yaml.load(args.env)
 
 # Raise exception if $spack_bin_root/bin/spack exists
-if not os.path.isfile(os.path.join(env['spack_bin_root'], 'bin', 'spack')):
+if not os.path.isfile(os.path.join(os.path.expanduser(env['spack_bin_root']), 'bin', 'spack')):
 	raise FileNotFoundError(errno.ENOENT,
 		os.strerror(errno.ENOENT),
-		os.path.join(env['spack_bin_root'], 'bin', 'spack'))
+		os.path.join(os.path.expanduser(env['spack_bin_root']), 'bin', 'spack'))
 
 # Create ~/.spack directory if absent.
 if not os.path.exists(os.path.join(os.environ['HOME'], '.spack')):
         os.mkdir(os.path.join(os.environ['HOME'], '.spack'))
 # Create $spack_install_root if absent
-if not os.path.exists(env['spack_install_root']):
-        os.makedirs(env['spack_install_root'], exist_ok=True)
+if not os.path.exists(os.path.expanduser(env['spack_install_root'])):
+        os.makedirs(os.path.expanduser(env['spack_install_root']), exist_ok=True)
 # Crate $spack_modules_root if absent
-if not os.path.exists(os.path.join(env['spack_modules_root'])):
-        os.makedirs(os.path.join(env['spack_modules_root']), exist_ok=True)
+if not os.path.exists(os.path.expanduser(env['spack_modules_root'])):
+        os.makedirs(os.path.expanduser(env['spack_modules_root']), exist_ok=True)
 
 # Set and write to spack config file ~/.spack/config.yaml
 if 'config' not in env.keys():
