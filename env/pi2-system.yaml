@@ -104,6 +104,7 @@ modules:
       - 'scotch'
       - 'swig'
       - 'tar'
+      - 'texinfo'
       - 'util-macros'
       - 'xcb-proto'
       - 'xcb-util'
