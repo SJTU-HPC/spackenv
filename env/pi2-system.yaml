@@ -251,7 +251,7 @@ install:
   # - 'bowtie@1.2.2_p1 %intel@19.0.4' # bowtie conflicts with %intel
   - 'hisat2@2.1.0 %gcc@8.3.0'
   - 'hisat2@2.1.0 %intel@19.0.4'
-  - 'tophat@2.1.2 %gcc@8.3.0'
+  - 'tophat@2.1.2 %gcc@5.4.0'
   - 'tophat@2.1.2 %intel@19.0.4'
   - 'bismark@0.19.0 %gcc@8.3.0'
   - 'bismark@0.19.0 %intel@19.0.4'
