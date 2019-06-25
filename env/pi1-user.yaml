@@ -1,5 +1,5 @@
 ---
-spack_bin_root:         /lustre/spack
+spack_bin_root:         ~/spack
 spack_install_root:     ~/opt/sandybridge
 spack_modules_root:     ~/share/spack/modules/sandybridge
 

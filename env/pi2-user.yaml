@@ -1,0 +1,221 @@
+---
+spack_bin_root:         ~/spack
+spack_install_root:     ~/opt/cascadelake
+spack_modules_root:     ~/share/spack/modules/cascadelake
+
+modules:
+  tcl:
+    hash_length: 0
+    naming_scheme: '{name}-{version}-{compiler.name}-{compiler.version}'
+    all:
+      conflict:
+        - '{name}' 
+    blacklist:
+      - 'argtable'
+      - 'autoconf'
+      - 'automake'
+      - 'bdw-gc'
+      - 'bzip2'
+      - 'bison'
+      - 'binutils'
+      - 'cairo'
+      - 'cgal'
+      - 'curl'
+      - 'diffutils'
+      - 'double-conversion'
+      - 'fontconfig'
+      - 'font-util'
+      - 'freetype'
+      - 'flex'
+      - 'glproto'
+      - 'guile'
+      - 'expat'
+      - 'gettext'
+      - 'glib'
+      - 'gdbm'
+      - 'gettext'
+      - 'gmp'
+      - 'gnutls'
+      - 'harfbuzz'
+      - 'hwloc'
+      - 'help2man'
+      - 'isl'
+      - 'icu4c'
+      - 'inputproto'
+      - 'json-c'
+      - 'kahip'
+      - 'kbproto'
+      - 'lcms'
+      - 'libarchive'
+      - 'libatomic-ops'
+      - 'libedit'
+      - 'libjpeg-turbo'
+      - 'libmng'
+      - 'libpng'
+      - 'libpthread-stubs'
+      - 'libtiff'
+      - 'libx11'
+      - 'libxau'
+      - 'libxcb'
+      - 'libxdmcp'
+      - 'libxext'
+      - 'libxkbcommon'
+      - 'libxkbfile'
+      - 'libidn2'
+      - 'libsigsegv'
+      - 'libtool'
+      - 'libfabric'
+      - 'libffi'
+      - 'libgcrypt'
+      - 'libgpg-error'
+      - 'libbsd'
+      - 'libiconv'
+      - 'libpciaccess'
+      - 'libuv'
+      - 'libunistring'
+      - 'libxml2'
+      - 'lmdb'
+      - 'lz4'
+      - 'lzo'
+      - 'mesa'
+      - 'm4'
+      - 'mpc'
+      - 'mpfr'
+      - 'nettle'
+      - 'ncurses'
+      - 'numactl'
+      - 'nasm'
+      - 'openssl'
+      - 'pixman'
+      - 'pcre'
+      - 'pcre2'
+      - 'pkgconf'
+      - 'perl%gcc@4.8.5'
+      - 'perl%gcc@5.4.0'
+      - 'perl-data-dumper'
+      - 'py-setuptools'
+      - 'py-mako'
+      - 'py-markupsafe'
+      - 'qt'
+      - 'readline'
+      - 'rhash'
+      - 'sqlite'
+      - 'slurm'
+      - 'scotch'
+      - 'swig'
+      - 'tar'
+      - 'texinfo'
+      - 'util-macros'
+      - 'xcb-proto'
+      - 'xcb-util'
+      - 'xcb-util-image'
+      - 'xcb-util-keysyms'
+      - 'xcb-util-renderutil'
+      - 'xcb-util-wm'
+      - 'xextproto'
+      - 'xkbcomp'
+      - 'xkbdata'
+      - 'xproto'
+      - 'xtrans'
+      - 'xz'
+      - 'yasm'
+      - 'zlib'
+
+packages:
+  all:
+    compiler: [gcc, intel, pgi]
+    providers:
+      mpi: [openmpi, mvapich2, mpich, intel-mpi]
+      blas: [openblas, intel-mkl]
+      lapack: [openblas, intel-mkl]
+      scalapack: [netlib-scalapack, intel-mkl]
+    variants: ~mpi +openmp
+  python:
+    variants: +ucs4
+  intel-mkl:
+    variants: threads=openmp
+  openblas:
+    variants: +avx2 +avx512 threads=openmp
+  openmpi:
+    variants: +pmi +legacylaunchers fabrics=libfabric schedulers=slurm
+  mpich:
+    variants: +hydra +romio +slurm netmod=ofi
+  slurm:
+    paths:
+      slurm@17-11-9-13: /usr
+    buildable: False
+  libfabric:
+    paths:
+      libfabric@1.6.2: /usr
+
+compilers:
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc: /usr/bin/gcc
+        cxx: /usr/bin/g++
+        f77: /usr/bin/gfortran
+        fc: /usr/bin/gfortran
+      spec: gcc@4.8.5
+      target: x86_64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gcc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/g++
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gfortran
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gfortran
+      spec: gcc@5.4.0
+      target: x86_64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gcc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/g++
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gfortran
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gfortran
+      spec: gcc@8.3.0
+      target: x86_64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.4-zxtvkrsgqvhud4og62e55kwgqvhy26d3/compilers_and_libraries_2019.4.243/linux/bin/intel64/icc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.4-zxtvkrsgqvhud4og62e55kwgqvhy26d3/compilers_and_libraries_2019.4.243/linux/bin/intel64/icpc
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.4-zxtvkrsgqvhud4og62e55kwgqvhy26d3/compilers_and_libraries_2019.4.243/linux/bin/intel64/ifort
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.4-zxtvkrsgqvhud4og62e55kwgqvhy26d3/compilers_and_libraries_2019.4.243/linux/bin/intel64/ifort
+      spec: intel@19.0.4
+      target: x86_64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgcc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgc++
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgfortran
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgf95
+      spec: pgi@19.4
+      target: x86_64
+
+mirrors:
+  remote_server: http://spack.pi.sjtu.edu.cn/mirror
+
+install: []
