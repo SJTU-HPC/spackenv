@@ -149,7 +149,7 @@ packages:
       libfabric@1.6.2: /usr
   intel:
     paths:
-      intel@19.0.4@gcc4.8.5: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv
+      intel@19.0.4%gcc4.8.5: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv
     buildable: False
   intel-mpi:
     paths:
