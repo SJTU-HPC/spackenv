@@ -149,7 +149,7 @@ packages:
       libfabric@1.6.2: /usr
   intel:
     paths:
-      intel@19.0.4: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv
+      intel@19.0.4@4.8.5: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.3-4vf3wugrvromolotwrco5vuzydnts3bv
     buildable: False
   intel-mpi:
     paths:
@@ -235,7 +235,7 @@ mirrors:
   remote_server: http://spack.pi.sjtu.edu.cn/mirror
 
 install:
-  - 'intel@19.0.4' 
+  - 'intel@19.0.4%gcc@4.8.5' 
   - 'intel-mpi@2019.4.243%intel@19.0.4' 
   - 'intel-mkl@2019.3.199%intel@19.0.4'
   - 'intel-parallel-studio@cluster.2019.4%gcc@4.8.5+advisor+clck+daal+inspector+ipp+itac+mkl+mpi+tbb+vtune'
