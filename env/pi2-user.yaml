@@ -235,8 +235,8 @@ mirrors:
   remote_server: http://spack.pi.sjtu.edu.cn/mirror
 
 install:
-  - 'intel@19.0.4%gcc@4.8.5' 
-  - 'intel-mpi@2019.4.243%intel@19.0.4' 
-  - 'intel-mkl@2019.3.199%intel@19.0.4'
-  - 'intel-parallel-studio@cluster.2019.4%gcc@4.8.5+advisor+clck+daal+inspector+ipp+itac+mkl+mpi+tbb+vtune'
+  - 'intel@19.0.4 %gcc@4.8.5' 
+  - 'intel-mpi@2019.4.243 %intel@19.0.4' 
+  - 'intel-mkl@2019.3.199 %intel@19.0.4'
+  - 'intel-parallel-studio@cluster.2019.4+advisor+clck+daal+inspector+ipp+itac+mkl+mpi+tbb+vtune %gcc@4.8.5'
 
