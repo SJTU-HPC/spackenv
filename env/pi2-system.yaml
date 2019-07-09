@@ -13,6 +13,7 @@ modules:
       suffixes:
         ^openblas: 'openblas'
         ^openmpi: 'openmpi'
+        ^intel-mpi: 'impi'
     blacklist:
       - 'argtable'
       - 'autoconf'
@@ -26,6 +27,7 @@ modules:
       - 'curl'
       - 'diffutils'
       - 'double-conversion'
+      - 'findutils'
       - 'fontconfig'
       - 'font-util'
       - 'freetype'
@@ -52,6 +54,7 @@ modules:
       - 'libarchive'
       - 'libatomic-ops'
       - 'libedit'
+      - 'libjpeg'
       - 'libjpeg-turbo'
       - 'libmng'
       - 'libpng'
@@ -268,3 +271,5 @@ install:
   # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %intel@19.0.4'
   - 'lammps@20180822+class2+colloid+compress+coreshell+dipole+granular+kspace+lib+manybody+mc+meam+misc+molecule+mpi+mpiio+peri+poems+python+qeq+reax+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp %gcc@8.3.0 ^openmpi@3.1.4 ^openblas ^libfabric@1.6.2'
   - 'openfoam@1812+metis %gcc@8.3.0 ^openmpi@3.1.4'
+  - 'netcdf-fortran@4.4.5 %intel@19.0.4 ^netcdf+mpi ^hdf5+fortran+mpi ^intel-mpi@2019.4.234'
+  - 'netcdf-fortran@4.4.5 %gcc@8.3.0 ^netcdf+mpi ^hdf5+fortran+mpi ^openmpi@3.1.4'
