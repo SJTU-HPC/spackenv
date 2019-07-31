@@ -273,3 +273,4 @@ install:
   - 'openfoam@1812+metis %gcc@8.3.0 ^openmpi@3.1.4'
   - 'netcdf-fortran@4.4.5 %intel@19.0.4 ^netcdf+mpi ^hdf5+fortran+mpi ^intel-mpi@2019.4.234'
   - 'netcdf-fortran@4.4.5 %gcc@8.3.0 ^netcdf+mpi ^hdf5+fortran+mpi ^openmpi@3.1.4'
+  - 'nco %gcc@8.3.0'
