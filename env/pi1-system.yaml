@@ -208,7 +208,7 @@ packages:
   openblas:
     variants: +avx2 threads=openmp
   openmpi:
-    variants: +pmi +legacylaunchers fabrics=libfabric schedulers=slurm
+    variants: +pmi +legacylaunchers fabrics=verbs schedulers=slurm
   slurm:
     paths:
       slurm@17-11-9-13: /usr
