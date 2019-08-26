@@ -70,6 +70,7 @@ if 'config' not in env.keys():
     env['config']['module_roots']['tcl'] = env['spack_modules_root']
     env['config']['source_cache'] = os.path.join(os.environ['HOME'], '.spack', 'sourcecache')
     env['config']['misc_cache'] = os.path.join(os.environ['HOME'], '.spack', 'misccache')
+    env['config']['build_stage'] = ['$tempdir/$user']
     env['config']['db_lock_timeout'] = 180
 out = {}
 out['config'] = env['config']
