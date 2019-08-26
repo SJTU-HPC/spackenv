@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python2
 
 import argparse
 import yaml
@@ -6,6 +6,7 @@ import os
 import subprocess
 import shutil
 import errno
+import distutils.dir_util
 
 def install_from_spack(spec, env):
     # Delete ~/.intel
@@ -53,14 +54,11 @@ if not os.path.isfile(os.path.join(os.path.expanduser(env['spack_bin_root']), 'b
 		os.path.join(os.path.expanduser(env['spack_bin_root']), 'bin', 'spack'))
 
 # Create ~/.spack directory if absent.
-if not os.path.exists(os.path.join(os.environ['HOME'], '.spack')):
-        os.mkdir(os.path.join(os.environ['HOME'], '.spack'))
+distutils.dir_util.mkpath(os.path.join(os.environ['HOME'], '.spack'))
 # Create $spack_install_root if absent
-if not os.path.exists(os.path.expanduser(env['spack_install_root'])):
-        os.makedirs(os.path.expanduser(env['spack_install_root']), exist_ok=True)
+distutils.dir_util.mkpath(env['spack_install_root'])
 # Crate $spack_modules_root if absent
-if not os.path.exists(os.path.expanduser(env['spack_modules_root'])):
-        os.makedirs(os.path.expanduser(env['spack_modules_root']), exist_ok=True)
+distutils.dir_util.mkpath(env['spack_modules_root'])
 
 # Set and write to spack config file ~/.spack/config.yaml
 if 'config' not in env.keys():
@@ -72,6 +70,7 @@ if 'config' not in env.keys():
     env['config']['module_roots']['tcl'] = env['spack_modules_root']
     env['config']['source_cache'] = os.path.join(os.environ['HOME'], '.spack', 'sourcecache')
     env['config']['misc_cache'] = os.path.join(os.environ['HOME'], '.spack', 'misccache')
+    env['config']['build_stage'] = ['$tempdir/$user']
     env['config']['db_lock_timeout'] = 180
 out = {}
 out['config'] = env['config']

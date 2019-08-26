@@ -1,0 +1,190 @@
+---
+spack_bin_root:         /home/spack
+spack_install_root:     /home/opt/arm
+spack_modules_root:     /home/share/spack/modules/arm
+
+config:
+  checksum: true
+  db_lock_timeout: 180
+  dirty: false
+  install_tree: /home/opt/arm
+  misc_cache: /home/sjtu_user/.spack/misccache
+  module_roots:
+    tcl: /home/share/spack/modules/arm
+  source_cache: /home/sjtu_user/.spack/sourcecache
+  locks: false
+
+modules:
+  tcl:
+    hash_length: 0
+    naming_scheme: '{name}/{version}-{compiler.name}-{compiler.version}'
+    all:
+      conflict:
+        - '{name}' 
+      suffixes:
+        ^openblas: 'openblas'
+        ^openmpi: 'openmpi'
+    blacklist:
+      - 'argtable'
+      - 'autoconf'
+      - 'automake'
+      - 'bdw-gc'
+      - 'bzip2'
+      - 'bison'
+      - 'binutils'
+      - 'cairo'
+      - 'cgal'
+      - 'curl'
+      - 'diffutils'
+      - 'double-conversion'
+      - 'fontconfig'
+      - 'font-util'
+      - 'freetype'
+      - 'flex'
+      - 'glproto'
+      - 'guile'
+      - 'expat'
+      - 'gettext'
+      - 'glib'
+      - 'gdbm'
+      - 'gettext'
+      - 'gmp'
+      - 'gnutls'
+      - 'harfbuzz'
+      - 'hwloc'
+      - 'help2man'
+      - 'isl'
+      - 'icu4c'
+      - 'inputproto'
+      - 'json-c'
+      - 'kahip'
+      - 'kbproto'
+      - 'lcms'
+      - 'libarchive'
+      - 'libatomic-ops'
+      - 'libedit'
+      - 'libevent'
+      - 'libjpeg-turbo'
+      - 'libmng'
+      - 'libpng'
+      - 'libpthread-stubs'
+      - 'libtiff'
+      - 'libx11'
+      - 'libxau'
+      - 'libxcb'
+      - 'libxdmcp'
+      - 'libxext'
+      - 'libxkbcommon'
+      - 'libxkbfile'
+      - 'libidn2'
+      - 'libsigsegv'
+      - 'libtool'
+      - 'libfabric'
+      - 'libffi'
+      - 'libgcrypt'
+      - 'libgpg-error'
+      - 'libbsd'
+      - 'libiconv'
+      - 'libpciaccess'
+      - 'libuv'
+      - 'libunistring'
+      - 'libxml2'
+      - 'lmdb'
+      - 'lz4'
+      - 'lzo'
+      - 'mesa'
+      - 'm4'
+      - 'mpc'
+      - 'mpfr'
+      - 'nettle'
+      - 'ncurses'
+      - 'nasm'
+      - 'openssl'
+      - 'pixman'
+      - 'pcre'
+      - 'pcre2'
+      - 'pkgconf'
+      - 'perl-data-dumper'
+      - 'py-setuptools'
+      - 'py-mako'
+      - 'py-markupsafe'
+      - 'qt'
+      - 'readline'
+      - 'rhash'
+      - 'sqlite'
+      - 'slurm'
+      - 'scotch'
+      - 'swig'
+      - 'tar'
+      - 'texinfo'
+      - 'util-macros'
+      - 'xcb-proto'
+      - 'xcb-util'
+      - 'xcb-util-image'
+      - 'xcb-util-keysyms'
+      - 'xcb-util-renderutil'
+      - 'xcb-util-wm'
+      - 'xextproto'
+      - 'xkbcomp'
+      - 'xkbdata'
+      - 'xproto'
+      - 'xtrans'
+      - 'xz'
+      - 'yasm'
+      - 'zlib'
+
+packages:
+  all:
+    compiler: [gcc, intel, pgi]
+    providers:
+      mpi: [openmpi, mvapich2, mpich, intel-mpi]
+      blas: [openblas, intel-mkl]
+      lapack: [openblas, intel-mkl]
+      scalapack: [netlib-scalapack, intel-mkl]
+    variants: ~mpi +openmp
+  python:
+    variants: +ucs4
+  intel-mkl:
+    variants: threads=openmp
+  openblas:
+    variants: threads=openmp
+  openmpi:
+    variants: +legacylaunchers fabrics=verbs
+  slurm:
+    paths:
+      slurm@18-08-1-1: /usr
+    buildable: False
+
+mirrors:
+  remote_server: http://spack.pi.sjtu.edu.cn/mirror
+
+compilers:
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc: /usr/bin/gcc
+        cxx: /usr/bin/g++
+        f77: /usr/bin/gfortran
+        fc: /usr/bin/gfortran
+      spec: gcc@4.8.5
+      target: aarch64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc:  /home/opt/arm/linux-centos7-aarch64/gcc-4.8.5/gcc-8.3.0-b5btlnhrpaoxguo7atqjty5h45nyyzt3/bin/gcc 
+        cxx: /home/opt/arm/linux-centos7-aarch64/gcc-4.8.5/gcc-8.3.0-b5btlnhrpaoxguo7atqjty5h45nyyzt3/bin/g++ 
+        f77: /home/opt/arm/linux-centos7-aarch64/gcc-4.8.5/gcc-8.3.0-b5btlnhrpaoxguo7atqjty5h45nyyzt3/bin/gfortran 
+        fc:  /home/opt/arm/linux-centos7-aarch64/gcc-4.8.5/gcc-8.3.0-b5btlnhrpaoxguo7atqjty5h45nyyzt3/bin/gfortran 
+      spec: gcc@8.3.0
+      target: aarch64
+
+install:
+  - 'openblas %gcc@7.4.0 threads=openmp'
