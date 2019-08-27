@@ -3,17 +3,6 @@ spack_bin_root:         ~/spack
 spack_install_root:     ~/opt/arm
 spack_modules_root:     ~/share/spack/modules/arm
 
-config:
-  checksum: true
-  db_lock_timeout: 180
-  dirty: false
-  install_tree: /home/opt/arm
-  misc_cache: /home/sjtu_user/.spack/misccache
-  module_roots:
-    tcl: /home/share/spack/modules/arm
-  source_cache: /home/sjtu_user/.spack/sourcecache
-  locks: false
-
 modules:
   tcl:
     hash_length: 0
@@ -188,3 +177,6 @@ compilers:
 
 install:
   - 'openblas %gcc@7.4.0 threads=openmp'
+  # Bioinfo Software
+  - 'bwa@0.7.17 %gcc@8.3.0'
+  - 'bowtie2@2.3.5 %gcc@8.3.0'
