@@ -217,9 +217,6 @@ packages:
     paths:
       slurm@17-11-9-13: /usr
     buildable: False
-  libfabric:
-    paths:
-      libfabric@1.6.2: /usr
 
 mirrors:
   remote_server: http://spack.pi.sjtu.edu.cn/mirror
