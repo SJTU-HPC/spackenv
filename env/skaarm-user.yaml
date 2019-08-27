@@ -187,7 +187,6 @@ compilers:
       target: aarch64
 
 install:
-  - 'openblas %gcc@7.4.0 threads=openmp'
+  - 'openblas %gcc@8.3.0 threads=openmp'
   # Bioinfo Software
-  - 'bwa@0.7.17 %gcc@8.3.0'
-  - 'bowtie2@2.3.5 %gcc@8.3.0'
+  - 'cufflinks@2.2.1 %gcc@8.3.0'
