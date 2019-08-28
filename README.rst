@@ -267,7 +267,33 @@ Variant
 Environment Modules 模块名中只使用了软件名、版本、编译器、编译器版本，有可能出现名字冲突，可以尝试两种两种方法解决：
 
 1. 修改编译选项重新编译，把名字冲突的软件(通常在variants上有细微差别) “归并”到同一个软件包。
-2. 在blacklist中添加不希望生成模块的软件包。 
+2. 在blacklist中添加不希望生成模块的软件包，blacklist的过滤条件可以包括版本、编译选项、依赖包等。 
+
+例如，运行 ``spack module tcl refresh -y`` 后提示有如下冲突::
+
+  file: /lustre/share/spack/modules/sandybridge/linux-centos7-x86_64/htslib/1.9
+  -intel-19.0.4
+  spec: htslib@1.9%intel@19.0.4 arch=linux-centos7-x86_64
+  spec: htslib@1.9%intel@19.0.4 arch=linux-centos7-x86_64
+
+这两个htslib的名字、版本、所用编译器相同，生成的Environment Module名字相，导致了模块名字冲突。
+需要将不希望生成的软件包加入到黑名单中，运行 ``spack find -dl htslib@1.9 %intel@19.0.4`` 查看着两个包的依赖库::
+
+  ==> 2 installed packages
+  -- linux-centos7-x86_64 / intel@19.0.4 --------------------------
+  4zsx4qp    htslib@1.9
+  z6ivwjm        ^bzip2@1.0.8
+  plllndw        ^xz@5.2.4
+  3ei36to        ^zlib@1.2.11
+  
+  6nmxiuu    htslib@1.9
+  ymvfo2t        ^bzip2@1.0.6
+  plllndw        ^xz@5.2.4
+  3ei36to        ^zlib@1.2.11
+
+决定不为Hash为 ``6nmxiuu`` 的htslib生成环境模块，在blacklist中加入这个库，然后重新运行 ``spack module tcl refresh -y``::
+
+  - 'htslib@1.9 ^bzip2@1.0.6 %intel@19.0.4' 
 
 软件包无法下载
 --------------
