@@ -14,6 +14,7 @@ modules:
         ^openblas: 'openblas'
         ^openmpi: 'openmpi'
         ^intel-mpi: 'impi'
+        ^cuda@8.0.61: 'cuda80'
     blacklist:
       - 'argtable'
       - 'autoconf'
@@ -240,6 +241,7 @@ install:
   - 'jdk@11.0.2_9 %gcc@8.3.0'
   - 'jdk@11.0.2_9 %intel@19.0.4'
   - 'emacs+tls %gcc@4.8.5'
+  - 'gromacs+cuda+mpi@5.1.5 %gcc@5.4.0 ^openmpi+pmi schedulers=slurm ^cuda@8.0.61 ^cmake@3.9.6'
   - 'openblas %gcc@8.3.0 threads=openmp'
   - 'openblas %intel@19.0.4 threads=openmp'
   - 'stream+openmp %intel@19.0.4 cflags="-O3 -xHost -ffreestanding -fopenmp"'
