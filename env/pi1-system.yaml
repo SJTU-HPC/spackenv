@@ -303,7 +303,7 @@ install:
   # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %gcc@8.3.0'
   # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %intel@19.0.4'
   # - 'openfoam@1812+metis %gcc@8.3.0 ^openmpi@4.0.1+pmi fabrics=libfabric schedulers=slurm'
-  - 'openmpi@2.1.6+pmi  %gcc@4.8.5 schedulers=slurm fabrics=verbs'
-  - 'lammps@20180822+class2+colloid+compress+coreshell+dipole+granular+kspace+lib+manybody+mc+meam+misc+molecule+mpi+mpiio+peri+poems+python+qeq+reax+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp %gcc@8.3.0 ^openmpi@3.1.4^openblas ^libfabric@1.6.2'
+  - 'openmpi@2.1.6+pmi  %gcc@4.8.5'
+  - 'lammps@20180822+class2+colloid+compress+coreshell+dipole+granular+kspace+lib+manybody+mc+meam+misc+molecule+mpi+mpiio+peri+poems+python+qeq+reax+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp %gcc@8.3.0 ^openmpi@3.1.4 ^openblas'
   - 'openfoam@1812+metis %gcc@8.3.0 ^openmpi@3.1.4'
 
