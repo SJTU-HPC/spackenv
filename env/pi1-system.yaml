@@ -30,6 +30,7 @@ modules:
       - 'stream'
       - 'emacs'
       - 'openmpi'
+      - 'perl'
       - 'gromacs'
       # Bioinfo Software
       - 'bwa'
