@@ -1,0 +1,323 @@
+---
+spack_bin_root:         ~/spack
+spack_install_root:     ~/opt/cascadelake
+spack_modules_root:     ~/share/spack/modules/cascadelake
+
+modules:
+  tcl:
+    hash_length: 0
+    naming_scheme: '{name}/{version}-{compiler.name}-{compiler.version}'
+    all:
+      conflict:
+        - '{name}' 
+      suffixes:
+        ^openblas: 'openblas'
+        ^openmpi: 'openmpi'
+        ^intel-mpi: 'impi'
+        ^cuda@8.0.61: 'cuda80'
+    whitelist:
+      - 'intel'
+      - 'intel-parallel-studio'
+      - 'intel-mpi'
+      - 'intel-mkl'
+      - 'miniconda2'
+      - 'cuda'
+      - 'jdk' 
+      - 'openblas'
+      - 'octave'
+      - 'stream'
+      - 'emacs'
+      - 'openmpi'
+      - 'perl'
+      - 'gromacs'
+      # Bioinfo Software
+      - 'bwa'
+      - 'bismark'
+      - 'blast-plus'
+      - 'bowtie'
+      - 'bowtie2'
+      - 'bedtools2'
+      - 'cufflinks'
+      - 'canu'
+      - 'flash'
+      - 'fastqc'
+      - 'gatk'
+      - 'hisat2'
+      - 'megahit'
+      - 'ncbi-rmblastn'
+      - 'py-htseq'
+      - 'py-quast'
+      - 'picard'
+      - 'rna-seqc'
+      - 'r'
+      - 'soapdenovo2'
+      - 'stringtie'
+      - 'samtools ^bzip2@1.0.8'
+      - 'spades'
+      - 'tophat'
+      - 'trinity'
+      - 'vsearch'
+      - 'usearch'
+      - 'lammps'
+      - 'openfoam'
+    blacklist: ['%gcc', '%intel', '%pgi']
+      - 'argtable'
+      - 'autoconf'
+      - 'automake'
+      - 'bdw-gc'
+      - 'bzip2'
+      - 'bison'
+      - 'binutils'
+      - 'cairo'
+      - 'cgal'
+      - 'curl'
+      - 'diffutils'
+      - 'double-conversion'
+      - 'findutils'
+      - 'fontconfig'
+      - 'font-util'
+      - 'freetype'
+      - 'flex'
+      - 'glproto'
+      - 'guile'
+      - 'expat'
+      - 'gettext'
+      - 'glib'
+      - 'gdbm'
+      - 'gettext'
+      - 'gmp'
+      - 'gnutls'
+      - 'harfbuzz'
+      - 'hwloc'
+      - 'help2man'
+      - 'isl'
+      - 'icu4c'
+      - 'inputproto'
+      - 'json-c'
+      - 'kahip'
+      - 'kbproto'
+      - 'lcms'
+      - 'libarchive'
+      - 'libatomic-ops'
+      - 'libedit'
+      - 'libjpeg'
+      - 'libjpeg-turbo'
+      - 'libmng'
+      - 'libpng'
+      - 'libpthread-stubs'
+      - 'libtiff'
+      - 'libx11'
+      - 'libxau'
+      - 'libxcb'
+      - 'libxdmcp'
+      - 'libxext'
+      - 'libxkbcommon'
+      - 'libxkbfile'
+      - 'libidn2'
+      - 'libsigsegv'
+      - 'libtool'
+      - 'libfabric'
+      - 'libffi'
+      - 'libgcrypt'
+      - 'libgpg-error'
+      - 'libbsd'
+      - 'libiconv'
+      - 'libpciaccess'
+      - 'libuv'
+      - 'libunistring'
+      - 'libxml2'
+      - 'lmdb'
+      - 'lz4'
+      - 'lzo'
+      - 'mesa'
+      - 'm4'
+      - 'mpc'
+      - 'mpfr'
+      - 'nettle'
+      - 'ncurses'
+      - 'numactl'
+      - 'nasm'
+      - 'openssl'
+      - 'pixman'
+      - 'pcre'
+      - 'pcre2'
+      - 'pkgconf'
+      - 'perl%gcc@4.8.5'
+      - 'perl%gcc@5.4.0'
+      - 'perl-data-dumper'
+      - 'py-setuptools'
+      - 'py-mako'
+      - 'py-markupsafe'
+      - 'qt'
+      - 'readline'
+      - 'rhash'
+      - 'sqlite'
+      - 'slurm'
+      - 'scotch'
+      - 'swig'
+      - 'tar'
+      - 'texinfo'
+      - 'util-macros'
+      - 'xcb-proto'
+      - 'xcb-util'
+      - 'xcb-util-image'
+      - 'xcb-util-keysyms'
+      - 'xcb-util-renderutil'
+      - 'xcb-util-wm'
+      - 'xextproto'
+      - 'xkbcomp'
+      - 'xkbdata'
+      - 'xproto'
+      - 'xtrans'
+      - 'xz'
+      - 'yasm'
+      - 'zlib'
+
+packages:
+  all:
+    compiler: [gcc, intel, pgi]
+    providers:
+      mpi: [openmpi, mvapich2, mpich, intel-mpi]
+      blas: [openblas, intel-mkl]
+      lapack: [openblas, intel-mkl]
+      scalapack: [netlib-scalapack, intel-mkl]
+    variants: ~mpi +openmp
+  python:
+    variants: +ucs4
+  intel-mkl:
+    variants: threads=openmp
+  openblas:
+    variants: +avx2 +avx512 threads=openmp
+  openmpi:
+    variants: +pmi +legacylaunchers fabrics=libfabric schedulers=slurm
+  mpich:
+    variants: +hydra +romio +slurm netmod=ofi
+  slurm:
+    paths:
+      slurm@17-11-9-13: /usr
+    buildable: False
+  libfabric:
+    paths:
+      libfabric@1.6.2: /usr
+
+compilers:
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc: /usr/bin/gcc
+        cxx: /usr/bin/g++
+        f77: /usr/bin/gfortran
+        fc: /usr/bin/gfortran
+      spec: gcc@4.8.5
+      target: x86_64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gcc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/g++
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gfortran
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gfortran
+      spec: gcc@5.4.0
+      target: x86_64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gcc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/g++
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gfortran
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-wwpinbruamhvwaqdjijnfou7xkmb5knx/bin/gfortran
+      spec: gcc@8.3.0
+      target: x86_64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.4-zxtvkrsgqvhud4og62e55kwgqvhy26d3/compilers_and_libraries_2019.4.243/linux/bin/intel64/icc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.4-zxtvkrsgqvhud4og62e55kwgqvhy26d3/compilers_and_libraries_2019.4.243/linux/bin/intel64/icpc
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.4-zxtvkrsgqvhud4og62e55kwgqvhy26d3/compilers_and_libraries_2019.4.243/linux/bin/intel64/ifort
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.4-zxtvkrsgqvhud4og62e55kwgqvhy26d3/compilers_and_libraries_2019.4.243/linux/bin/intel64/ifort
+      spec: intel@19.0.4
+      target: x86_64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgcc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgc++
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgfortran
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgf95
+      spec: pgi@19.4
+      target: x86_64
+
+mirrors:
+  remote_server: http://spack.pi.sjtu.edu.cn/mirror
+
+install:
+  - 'intel-mpi@2019.4.243 %intel@19.0.4'
+  - 'intel-mpi@2019.4.243 %gcc@8.3.0'
+  - 'intel-mkl@2019.3.199 %intel@19.0.4'
+  - 'intel-mkl@2019.3.199 %gcc@8.3.0'
+    # - 'intel-mkl-dnn %intel@19.0.4 ^gnutls%gcc@8.3.0'
+  - 'miniconda2@4.6.14 %gcc@8.3.0'
+  - 'miniconda3@4.6.14 %gcc@8.3.0'
+  - 'miniconda2@4.6.14 %intel@19.0.4'
+  - 'miniconda3@4.6.14 %intel@19.0.4'
+  - 'cuda@9.0.176 %gcc@5.4.0'
+  - 'cuda@9.0.176 %intel@19.0.4'
+  - 'cuda@10.0.130 %gcc@5.4.0'
+  - 'cuda@10.0.130 %intel@19.0.4'
+  - 'jdk@11.0.2_9 %gcc@8.3.0'
+  - 'jdk@11.0.2_9 %intel@19.0.4'
+  - 'emacs+tls %gcc@4.8.5'
+  - 'openblas %gcc@8.3.0 threads=openmp'
+  - 'openblas %intel@19.0.4 threads=openmp'
+  - 'stream+openmp %intel@19.0.4 cflags="-O3 -xHost -ffreestanding -fopenmp"'
+  - 'stream+openmp %gcc@8.3.0 cflags="-O3 -fopenmp"'
+  - 'octave+qt+llvm %gcc@8.3.0 ^openblas ^llvm@7.0.1'
+  # Bioinfo Software
+  - 'bwa@0.7.17 %gcc@8.3.0'
+  - 'bwa@0.7.17 %intel@19.0.4'
+  - 'samtools@1.9 %gcc@8.3.0'
+  - 'samtools@1.9 %intel@19.0.4'
+  - 'bowtie2@2.3.5 %gcc@8.3.0'
+  - 'bowtie2@2.3.5 %intel@19.0.4'
+  - 'bowtie@1.2.2_p1 %gcc@5.4.0'
+  # - 'bowtie@1.2.2_p1 %intel@19.0.4' # bowtie conflicts with %intel
+  - 'hisat2@2.1.0 %gcc@8.3.0'
+  - 'hisat2@2.1.0 %intel@19.0.4'
+  - 'tophat@2.1.2 %gcc@5.4.0'
+  - 'tophat@2.1.2 %intel@19.0.4'
+  - 'bismark@0.19.0 %gcc@8.3.0'
+  - 'bismark@0.19.0 %intel@19.0.4'
+  - 'blast-plus@2.9.0 %gcc@8.3.0'
+  # - 'blast-plus@2.9.0 %intel@19.0.4' # blast-plus conflicts with %intel
+  - 'openmpi@3.1.4 %gcc@8.3.0'
+  - 'openmpi@3.1.4 %intel@19.0.4'
+  - 'mpich@3.3+hydra+romio+slurm netmod=ofi %gcc@8.3.0'
+  - 'mpich@3.3+hydra+romio+slurm netmod=ofi %intel@19.0.4'
+  # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %gcc@8.3.0'
+  # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %intel@19.0.4'
+  - 'lammps@20180822+class2+colloid+compress+coreshell+dipole+granular+kspace+lib+manybody+mc+meam+misc+molecule+mpi+mpiio+peri+poems+python+qeq+reax+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp %gcc@8.3.0 ^openmpi@3.1.4 ^openblas ^libfabric@1.6.2'
+  - 'openfoam@1812+metis %gcc@8.3.0 ^openmpi@3.1.4'
+  - 'netcdf-fortran@4.4.5 %intel@19.0.4 ^netcdf+mpi ^hdf5+fortran+mpi ^intel-mpi@2019.4.234'
+  - 'netcdf-fortran@4.4.5 %gcc@8.3.0 ^netcdf+mpi ^hdf5+fortran+mpi ^openmpi@3.1.4'
+  - 'nco %gcc@8.3.0'
+  - 'megahit %gcc@8.3.0'
