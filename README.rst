@@ -311,9 +311,9 @@ spack编译软件需要license的解决方法
     tar -zxvf pgilinux-2019-194-x86-64.tar.gz
     ./install
     
-编译完成后生成集群共享的``~/pgi/lincense.dat``
+编译完成后生成集群共享的 ``~/pgi/lincense.dat``
 
-将生成的license.dat替换rpm中spack安装路径下pgi@19.4的license即可，如果未生效可以运行 ``./install --env env/pi2-system.yaml --refresh`` 重新生成软件模块。
+将生成的license.dat置入rpm中spack安装路径 ``/lustre/spack/etc/spack/licenses/pgi/license.dat`` 即可，如果未生效可以运行 ``./install --env env/pi2-system.yaml --refresh`` 重新生成软件模块。
 因社区版软件的license时效不同，过期后需要重复以上方法更新。
 
 参考资料
