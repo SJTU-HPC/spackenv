@@ -312,7 +312,7 @@ spack编译的部分软件需要license才能正常使用，以pgi@19.4为例；
    $ tar -zxvf pgilinux-2019-194-x86-64.tar.gz
    $ ./install
 
-编译完成后，可以通过``~/pgi/lincense.info``查看lincense相关信息，将自动生成的 ``~/pgi/lincense.dat``替换rpm节点 ``/lustre/spack/etc/spack/licenses/pgi/license.dat`` 即可；
+编译完成后，可以通过 ``~/pgi/lincense.info``查看lincense相关信息，将自动生成的 ``~/pgi/lincense.dat``替换rpm节点 ``/lustre/spack/etc/spack/licenses/pgi/license.dat`` 即可；
 如果仍未生效可以运行 ``./install --env env/pi2-system.yaml --refresh`` 重新生成软件模块。
 因社区版软件的license具有时效性，过期后需要重复以上方法更新。
 
