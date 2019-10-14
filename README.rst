@@ -314,7 +314,17 @@ spack编译的部分软件需要license才能正常使用，以pgi@19.4为例；
 
 编译完成后，可以通过 ``~/pgi/lincense.info`` 查看lincense相关信息，将自动生成的 ``~/pgi/lincense.dat`` 替换rpm节点 ``/lustre/spack/etc/spack/licenses/pgi/license.dat`` 即可；
 如果仍未生效可以运行 ``./install --env env/pi2-system.yaml --refresh`` 重新生成软件模块。
-因社区版软件的license具有时效性，过期后需要重复以上方法更新。
+因社区版软件的license具有时效性，过期后可以通过两种方法更新：
+
+1. 通过以上方法重新编译pgi获取新license。
+
+2.  pgi本身提供了license生成和升级工具::
+
+    $ cd ~/pgi/linux86-64-llvm/19.4/bin
+    $ ./pgi_license_tool
+
+此方法更新license需要pgi账户。
+
 
 参考资料
 ========
