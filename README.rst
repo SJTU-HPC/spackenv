@@ -300,14 +300,21 @@ Environment Modules 模块名中只使用了软件名、版本、编译器、编
 
 因为种种原因，软件源码包可能无法在编译节点上下载。Pi 1.0 和 Pi 2.0 都部署了缓存服务节点，可手动将源码包上传到缓存节点目录下。
 Pi 1.0 缓存服务器是 180.0.1.33 ，Pi 2.0 缓存服务器是 172.16.0.133 ，缓存的源代码都位于 ``/var/lib/www/spack.pi.sjtu.edu.cn/mirror/`` 目录下。
-需要根据spack命令的错误提示 ``http://spack.pi.sjtu.edu.cn/mirror/xxx/xxx-xxx`` 把下载的软件包重命名上传到相应目录下。
+需要根据spack命令的错误提示 ``http://spack.pi.sjtu.edu.cn/mirror/xxx/xxx-xxx ``把下载的软件包重命名上传到相应目录下。
 
 spack编译软件需要license的解决方法
 --------------
 
-首先确认编译软件提供社区版，以pgi@19.4为例，可通过官网下载源码包进行手动编译，可以生成一个有时效的license。
-将生成的license替换rpm中spack安装路径下pgi@19.4的license即可，如果未生效可以运行 ``./install --env env/pi2-system.yaml --refresh`` 重新生成软件模块。
-因社区版软件的license时效不同，过期后需要重复以上方法更新。
+spack编译的部分软件需要license才能正常使用，以pgi@19.4为例；
+可通过官网下载，使用源码包进行手动编译，可以生成一个有时效的license::
+
+   $ wget https://www.pgroup.com/support/downloader.php?file=pgi-community-linux-x64
+   $ tar -zxvf pgilinux-2019-194-x86-64.tar.gz
+   $ ./install
+
+编译完成后，可以通过``~/pgi/lincense.info``查看lincense相关信息，将自动生成的 ``~/pgi/lincense.dat``替换rpm节点 ``/lustre/spack/etc/spack/licenses/pgi/license.dat`` 即可；
+如果仍未生效可以运行 ``./install --env env/pi2-system.yaml --refresh`` 重新生成软件模块。
+因社区版软件的license具有时效性，过期后需要重复以上方法更新。
 
 参考资料
 ========
