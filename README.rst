@@ -308,7 +308,7 @@ spack编译软件需要license的解决方法
 spack编译的部分软件需要license才能正常使用，以pgi@19.4为例；
 可通过官网下载，使用源码包进行手动编译，可以生成一个有时效的license::
 
-   $ wget https://www.pgroup.com/support/downloader.php?file=pgi-community-linux-x64
+   $ wget https://download.pgroup.com/secure/pgilinux-2019-194-x86-64.tar.gz?WxZu8Xid40A55PGE9mBEW-yuuJnsdnhAJJ-GLP93MdMr1qpEr_rtTkz9kxYHbZ8BPSefQUzerllqRn4oEierM7qbvtDgszyEInyFJFArqsGInzDuCAN8NKvgkZLouidllxOM8I0
    $ tar -zxvf pgilinux-2019-194-x86-64.tar.gz
    $ ./install
 
