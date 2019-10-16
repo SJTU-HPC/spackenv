@@ -28,6 +28,7 @@ modules:
     # Generate modules for software in the whitelist
     whitelist:
       - 'gcc'
+      - 'cmake'
       - 'jdk' 
       - 'openblas'
       - 'octave'
