@@ -27,6 +27,7 @@ modules:
     # Whitelist will have precedence over blacklist
     # Generate modules for software in the whitelist
     whitelist:
+      - 'gcc'
       - 'jdk' 
       - 'openblas'
       - 'octave'
