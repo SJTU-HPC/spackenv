@@ -28,7 +28,7 @@ def install_from_spack(spec, env):
             print("{} not found. Build it.".format(spec))
             os.system("spack install {}".format(spec))
     except subprocess.CalledProcessError as e:
-        raise RuntimeError("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
+        pass
 
 # Parse commandline options
 parser = argparse.ArgumentParser(description='Deploy Spack software environment')
