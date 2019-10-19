@@ -49,7 +49,7 @@ env = yaml.load(args.env)
 
 # Raise exception if $spack_bin_root/bin/spack exists
 if not os.path.isfile(os.path.join(os.path.expanduser(env['spack_bin_root']), 'bin', 'spack')):
-	raise FileNotFoundError(errno.ENOENT,
+	raise IOError(errno.ENOENT,
 		os.strerror(errno.ENOENT),
 		os.path.join(os.path.expanduser(env['spack_bin_root']), 'bin', 'spack'))
 
