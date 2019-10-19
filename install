@@ -22,9 +22,13 @@ def install_from_spack(spec, env):
     if os.path.isfile(intel_lic):
         os.remove(intel_lic)
     # Install the spec package if absent
-    if "No package" in subprocess.check_output("spack find {}".format(spec), shell=True).decode("utf-8"):
-        print("{} not found. Build it.".format(spec))
-        os.system("spack install {}".format(spec))
+    try:
+        out = subprocess.check_output("spack find {}".format(spec), shell=True).decode("utf-8")
+        if "No package" in out:
+            print("{} not found. Build it.".format(spec))
+            os.system("spack install {}".format(spec))
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
 
 # Parse commandline options
 parser = argparse.ArgumentParser(description='Deploy Spack software environment')
