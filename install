@@ -22,7 +22,7 @@ def install_from_spack(spec, env):
     if os.path.isfile(intel_lic):
         os.remove(intel_lic)
     # Install the spec package if absent
-    if "No package" in subprocess.call("spack find {}".format(spec), shell=True).decode("utf-8"):
+    if "No package" in subprocess.check_output("spack find {}".format(spec), shell=True).decode("utf-8"):
         print("{} not found. Build it.".format(spec))
         os.system("spack install {}".format(spec))
 
