@@ -22,6 +22,7 @@ modules:
       - 'intel-mpi'
       - 'intel-mkl'
       - 'miniconda2'
+      - 'miniconda3'
       - 'cuda'
       - 'jdk' 
       - 'openblas'
@@ -30,7 +31,6 @@ modules:
       - 'emacs'
       - 'openmpi'
       - 'perl'
-      - 'gromacs'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
@@ -61,6 +61,11 @@ modules:
       - 'usearch'
       - 'lammps'
       - 'openfoam'
+      - 'gromacs'
+      - 'nwchem'
+      - 'cp2k'
+      - 'nest'
+      - 'quantum-espresso'
     blacklist: ['%gcc', '%intel', '%pgi']
       
 packages:
