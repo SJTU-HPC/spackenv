@@ -116,10 +116,10 @@ compilers:
       modules: []
       operating_system: centos7
       paths:
-        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gcc
-        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/g++
-        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gfortran
-        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-mufy3fjs33jgj47lb3346bqktgtjnt4i/bin/gfortran
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-q22bkvdaih2plzd6fzrbg72ewawbtcsw/bin/gcc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-q22bkvdaih2plzd6fzrbg72ewawbtcsw/bin/g++
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-q22bkvdaih2plzd6fzrbg72ewawbtcsw/bin/gfortran
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-q22bkvdaih2plzd6fzrbg72ewawbtcsw/bin/gfortran
       spec: gcc@5.4.0
       target: x86_64
   - compiler:
