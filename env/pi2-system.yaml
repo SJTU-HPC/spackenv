@@ -1,5 +1,5 @@
 ---
-pack_bin_root:         /lustre/opt/spack
+spack_bin_root:         /lustre/opt/spack
 spack_install_root:     /lustre/opt/cascadelake
 spack_modules_root:     /lustre/share/spack/modules/cascadelake
 
