@@ -142,6 +142,19 @@ compilers:
       modules: []
       operating_system: centos7
       paths:
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-aoqn7jsisvrj2u5puapmiufudxmm6wt4/bin/gcc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-aoqn7jsisvrj2u5puapmiufudxmm6wt4/bin/g++
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-aoqn7jsisvrj2u5puapmiufudxmm6wt4/bin/gfortran
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-aoqn7jsisvrj2u5puapmiufudxmm6wt4/bin/gfortran
+      spec: gcc@8.3.0
+      target: x86_64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
         cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-9.2.0-6snvhqjum3bfpup574azrjrt7kfwyg5s/bin/gcc
         cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-9.2.0-6snvhqjum3bfpup574azrjrt7kfwyg5s/bin/g++
         f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-9.2.0-6snvhqjum3bfpup574azrjrt7kfwyg5s/bin/gfortran
