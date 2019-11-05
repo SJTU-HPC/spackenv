@@ -24,6 +24,7 @@ modules:
       - 'miniconda2'
       - 'miniconda3'
       - 'cuda'
+      - 'cudnn'
       - 'jdk' 
       - 'openblas +avx2+avx512 cpu_target=auto ~ilp64+pic+shared threads=openmp '
       - 'octave'
@@ -202,6 +203,7 @@ install:
   # General libs or utilities (mostly compilers or binary ones) for x86_64 platform
   - 'miniconda2@4.6.14 %gcc@4.8.5 target=x86_64'
   - 'miniconda3@4.6.14 %gcc@4.8.5 target=x86_64'
+  - 'cudnn@7.6.3-10.1-x86_64 %gcc@4.8.5 target=x86_64'
   # - 'cuda@9.0.176 %gcc@5.4.0 target=x86_64'
   # - 'cuda@9.0.176 %intel@19.0.4 target=x86_64'
   # - 'cuda@10.0.130 %gcc@5.4.0 target=x86_64'
