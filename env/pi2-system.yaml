@@ -244,7 +244,7 @@ install:
   - 'mpich@3.3+hydra+romio+slurm netmod=ofi %intel@19.0.4 target=cascadelake'
   # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %gcc@9.2.0'
   # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %intel@19.0.4'
-  - 'lammps@20180822+class2+colloid+compress+coreshell+dipole+granular+kspace+lib+manybody+mc+meam+misc+molecule+mpi+mpiio+peri+poems+python+qeq+reax+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp %gcc@9.2.0 target=cascadelake ^openmpi@3.1.4 ^openblas'
+  - 'lammps@20190807+asphere+body+class2+colloid+compress+coreshell+dipole+exceptions+granular+kspace+latte+manybody+mc+meam+misc+molecule+mpiio+peri+poems+python+qeq+reax+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp+mpi %gcc@8.3.0 target=skylake_avx512 ^hdf5+hl ^openmpi+pmi ^python@3.7.4~ucs4'
   - 'openfoam@1812+metis %gcc@9.2.0 target=cascadelake ^openmpi@3.1.4'
   - 'netcdf-fortran@4.4.5 %intel@19.0.4 target=cascadelake ^netcdf+mpi ^hdf5+fortran+mpi ^intel-mpi@2019.4.234'
   - 'netcdf-fortran@4.4.5 %gcc@9.2.0 target=cascadelake ^netcdf+mpi ^hdf5+fortran+mpi ^openmpi@3.1.4'
