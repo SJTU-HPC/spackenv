@@ -43,6 +43,7 @@ modules:
       - 'boost@1.70.0'
       - 'xz@5.2.4'
       - 'netcdf-fortran'
+      - 'netcdf-c +mpi'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
