@@ -36,7 +36,7 @@ modules:
       - 'pgi'
       - 'gsl'
       - 'fftw +mpi~openmp~pfft_patches precision=double'
-      - 'hdf5 ~cxx~debug~fortran~hl~mpi+pic+shared~szip~threadsafe'
+      - 'hdf5 +fortran+hl+mpi+pic'
       - 'tcl'
       - 'graphmap'
       - 'bzip2@1.0.8'
@@ -87,7 +87,7 @@ modules:
       - 'star'
       - 'hmmer'
       - 'salmon'
-      - 'jemalloc'
+      - 'jellyfish'
     blacklist: ['%gcc', '%intel', '%pgi']
 
 packages:
