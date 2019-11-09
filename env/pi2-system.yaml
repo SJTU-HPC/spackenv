@@ -47,14 +47,14 @@ modules:
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
-      - 'blast-plus'
+      - 'blast-plus ^perl@5.30.0'
       - 'bowtie'
-      - 'bowtie2'
+      - 'bowtie2 ^perl@5.30.0'
       - 'bedtools2'
       - 'cufflinks'
       - 'canu'
       - 'flash'
-      - 'fastqc'
+      - 'fastqc ^perl@5.30.0'
       - 'gatk'
       - 'hisat2'
       - 'megahit'
@@ -87,7 +87,7 @@ modules:
       - 'star'
       - 'hmmer'
       - 'salmon'
-      - 'jellyfish'
+      - 'jellyfish ^perl@5.30.0'
     blacklist: ['%gcc', '%intel', '%pgi']
 
 packages:
