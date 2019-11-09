@@ -251,3 +251,4 @@ install:
   - 'netcdf-fortran@4.4.5 %gcc@9.2.0 target=cascadelake ^netcdf+mpi ^hdf5+fortran+mpi ^openmpi@3.1.4'
   - 'nco %gcc@9.2.0 target=cascadelake'
   - 'megahit %gcc@9.2.0 target=cascadelake'
+  - 'gromacs+mpi@2019.4 %intel@19.0.4 simd=AVX_512 target=cascadelake ^intel-mpi'
