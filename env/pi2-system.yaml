@@ -44,6 +44,8 @@ modules:
       - 'xz@5.2.4'
       - 'netcdf-fortran'
       - 'netcdf-c +mpi'
+      - 'llvm'
+      - 'cairo +X+gobject+pdf'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
