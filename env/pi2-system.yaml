@@ -46,6 +46,8 @@ modules:
       - 'netcdf-c +mpi'
       - 'llvm'
       - 'cairo +X+gobject+pdf'
+      - 'cdo'
+      - 'postgresql'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
