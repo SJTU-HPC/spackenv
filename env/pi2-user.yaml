@@ -134,8 +134,6 @@ packages:
       lapack: [openblas, intel-mkl]
       scalapack: [netlib-scalapack, intel-mkl]
     variants: ~mpi +openmp
-  python:
-    variants: +ucs4
   intel-mkl:
     variants: threads=openmp
   openblas:
