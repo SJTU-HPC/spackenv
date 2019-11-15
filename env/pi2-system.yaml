@@ -84,7 +84,7 @@ modules:
       - 'nwchem'
       - 'cp2k'
       - 'nest'
-      - 'quantum-espresso'
+      - 'quantum-espresso +epw'
       - 'vt'
       - 'gmap-gsnap'
       - 'vardictjava'
