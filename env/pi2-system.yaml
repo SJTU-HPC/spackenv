@@ -48,6 +48,7 @@ modules:
       - 'cairo +X+gobject+pdf'
       - 'cdo'
       - 'postgresql'
+      - 'openjdk'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
