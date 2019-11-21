@@ -14,6 +14,7 @@ modules:
         ^openblas: 'openblas'
         ^openmpi: 'openmpi'
         ^intel-mpi: 'impi'
+        ^intel-parallel-studio+mpi: 'impi'
         ^cuda@8.0.61: 'cuda80'
     whitelist:
       - 'gcc'
