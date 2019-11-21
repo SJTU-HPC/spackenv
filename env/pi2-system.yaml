@@ -226,6 +226,8 @@ install:
   - 'intel-mkl@2019.3.199 %gcc@9.2.0 target=cascadelake'
   - 'openblas %gcc@9.2.0 target=cascadelake threads=openmp'
   - 'openblas %intel@19.0.4 target=cascadelake threads=openmp'
+  - 'gsl@2.5 %intel@19.0.4 target=cascadelake'
+  - 'gsl@2.5 %@8.3.0 target=skylake_avx512'
   - 'stream+openmp %intel@19.0.4 target=cascadelake cflags="-O3 -xHost -ffreestanding -fopenmp"'
   - 'stream+openmp %gcc@9.2.0 target=cascadelake cflags="-O3 -fopenmp"'
   - 'octave+qt+llvm %gcc@9.2.0 target=cascadelake ^openblas ^llvm@7.0.1'
