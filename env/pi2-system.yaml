@@ -196,6 +196,19 @@ compilers:
       extra_rpaths: []
       flags: {}
       modules: []
+      paths:
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-18.0.4-yzuuq5mpke4i44enduypudbrp2mty2s5/bin/icc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-18.0.4-yzuuq5mpke4i44enduypudbrp2mty2s5/bin/icpc
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-18.0.4-yzuuq5mpke4i44enduypudbrp2mty2s5/bin/ifort
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-18.0.4-yzuuq5mpke4i44enduypudbrp2mty2s5/bin/ifort
+      operating_system: centos7
+      spec: intel@18.0.4
+      target: x86_64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
       operating_system: centos7
       paths:
         cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/pgi-19.4-hz2tz6aeh4wt5zlw4dfb6mjbccdn5c4h/linux86-64/19.4/bin/pgcc
