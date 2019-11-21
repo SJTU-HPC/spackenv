@@ -50,6 +50,7 @@ modules:
       - 'postgresql'
       - 'openjdk@11.0.2'
       - 'mpich'
+      - 'grackle'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
