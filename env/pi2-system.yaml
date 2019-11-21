@@ -219,6 +219,7 @@ install:
   # - 'jdk@11.0.2_9 %intel@19.0.4 target=x86_64'
   - 'emacs+tls %gcc@4.8.5 target=x86_64'
   # Scientific tools optimized for Cascade Lake Platform
+  - 'intel-parallel-studio@cluster.2019.4 %intel@19.0.4 target=cascadelake'
   - 'intel-mpi@2019.4.243 %intel@19.0.4 target=cascadelake'
   - 'intel-mpi@2019.4.243 %gcc@9.2.0 target=cascadelake'
   - 'intel-mkl@2019.3.199 %intel@19.0.4 target=cascadelake'
