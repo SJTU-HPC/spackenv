@@ -117,6 +117,8 @@ packages:
     paths:
       slurm@17-11-9-13: /usr
     buildable: False
+  intel-parallel-studio:
+    variants: +inspector +itac +mkl +mpi +advisor +vtune threads=openmp
   libfabric:
     paths:
       libfabric@1.6.2: /usr
