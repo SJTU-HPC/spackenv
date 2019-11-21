@@ -52,6 +52,7 @@ modules:
       - 'openjdk@11.0.2'
       - 'mpich'
       - 'grackle'
+      - 'nektar'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
