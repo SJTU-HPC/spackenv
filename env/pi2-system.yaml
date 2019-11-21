@@ -268,3 +268,4 @@ install:
   - 'nco %gcc@9.2.0 target=cascadelake'
   - 'megahit %gcc@9.2.0 target=cascadelake'
   - 'gromacs+mpi@2019.4 %intel@19.0.4 simd=AVX_512 target=cascadelake ^intel-mpi'
+  - 'gromacs+mpi@2019.4 %gcc@8.3.0 simd=AVX_512 target=skylake_avx512 ^openmpi@3.1.4'
