@@ -53,7 +53,7 @@ modules:
       - 'mpich'
       - 'grackle'
       - 'nektar'
-      - 'metis'
+      - 'metis +gdb'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
@@ -90,7 +90,7 @@ modules:
       - 'nwchem'
       - 'cp2k'
       - 'nest'
-      - 'quantum-espresso +epw'
+      - 'quantum-espresso +epwi %intel'
       - 'vt'
       - 'gmap-gsnap'
       - 'vardictjava'
