@@ -53,6 +53,7 @@ modules:
       - 'mpich'
       - 'grackle'
       - 'nektar'
+      - 'metis'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
