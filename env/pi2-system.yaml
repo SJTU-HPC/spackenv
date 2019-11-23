@@ -90,7 +90,7 @@ modules:
       - 'nwchem'
       - 'cp2k'
       - 'nest'
-      - 'quantum-espresso +epwi %intel'
+      - 'quantum-espresso'
       - 'vt'
       - 'gmap-gsnap'
       - 'vardictjava'
