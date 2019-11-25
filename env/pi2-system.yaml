@@ -98,6 +98,7 @@ modules:
       - 'hmmer'
       - 'salmon'
       - 'jellyfish ^perl@5.30.0'
+      - 'sratoolkit'
     blacklist: ['%gcc', '%intel', '%pgi']
 
 packages:
