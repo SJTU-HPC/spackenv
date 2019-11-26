@@ -37,7 +37,7 @@ modules:
       - 'pgi'
       - 'gsl'
       - 'fftw'
-      - 'hdf5 +cxx+fortran+hl+mpi+pic'
+      - 'hdf5'
       - 'tcl'
       - 'graphmap'
       - 'bzip2@1.0.8'
