@@ -68,6 +68,7 @@ modules:
       - 'gatk'
       - 'hisat2'
       - 'megahit'
+      - 'mrbayes'
       - 'ncbi-rmblastn'
       - 'py-htseq'
       - 'py-quast'
