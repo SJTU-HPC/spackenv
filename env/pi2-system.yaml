@@ -35,6 +35,7 @@ modules:
       - 'perl'
       - 'nccl'
       - 'pgi'
+      - 'precice'
       - 'gsl'
       - 'fftw'
       - 'hdf5'
