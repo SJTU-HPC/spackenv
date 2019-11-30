@@ -102,6 +102,7 @@ modules:
       - 'jellyfish ^perl@5.30.0'
       - 'sratoolkit'
       - 'perl-bioperl'
+      - 'bcftools'
     blacklist: ['%gcc', '%intel', '%pgi']
 
 packages:
