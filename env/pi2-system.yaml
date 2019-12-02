@@ -103,6 +103,7 @@ modules:
       - 'sratoolkit'
       - 'perl-bioperl'
       - 'bcftools'
+      - 'rmats'
     blacklist: ['%gcc', '%intel', '%pgi']
 
 packages:
