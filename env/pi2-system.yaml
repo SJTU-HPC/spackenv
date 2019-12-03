@@ -55,6 +55,9 @@ modules:
       - 'grackle'
       - 'nektar'
       - 'metis +gdb'
+      - 'zlib'
+      - 'curl'
+      - 'openssl'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
