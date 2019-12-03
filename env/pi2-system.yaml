@@ -104,6 +104,7 @@ modules:
       - 'perl-bioperl'
       - 'bcftools'
       - 'rmats'
+      - 'py-matplotlib'
     blacklist: ['%gcc', '%intel', '%pgi']
 
 packages:
