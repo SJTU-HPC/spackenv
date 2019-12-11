@@ -26,7 +26,7 @@ def install_from_spack(spec, env):
         out = subprocess.check_output("spack find {}".format(spec), shell=True).decode("utf-8")
         if "No package" in out:
             print("{} not found. Build it.".format(spec))
-            os.system("spack install {}".format(spec))
+            os.system("spack install --verbose {}".format(spec))
     except subprocess.CalledProcessError as e:
         pass
 
@@ -125,6 +125,6 @@ if args.refresh:
 # Run Spack if --sync is NOT set
 if args.sync:
     print("Sync cached source files to the mirror site")
-    os.system("rsync -avr --progress %s/ root@lb://var/lib/www/spack.pi.sjtu.edu.cn/mirror/" % os.path.join(os.environ['HOME'], '.spack', 'sourcecache'))
+    os.system("rsync -avr --progress %s/ root@proxy://var/lib/www/spack.pi.sjtu.edu.cn/mirror/" % os.path.join(os.environ['HOME'], '.spack', 'sourcecache'))
 
 

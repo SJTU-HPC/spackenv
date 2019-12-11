@@ -14,6 +14,7 @@ modules:
         ^openblas: 'openblas'
         ^openmpi: 'openmpi'
         ^intel-mpi: 'impi'
+        ^intel-parallel-studio+mpi: 'impi'
         ^cuda@8.0.61: 'cuda80'
     whitelist:
       - 'gcc'
@@ -24,27 +25,55 @@ modules:
       - 'miniconda2'
       - 'miniconda3'
       - 'cuda'
+      - 'cudnn'
       - 'jdk' 
-      - 'openblas'
+      - 'openblas +avx2+avx512 cpu_target=auto ~ilp64+pic+shared threads=openmp '
       - 'octave'
       - 'stream'
       - 'emacs'
       - 'openmpi'
       - 'perl'
+      - 'nccl'
+      - 'pgi'
+      - 'precice'
+      - 'gsl'
+      - 'fftw'
+      - 'hdf5'
+      - 'tcl'
+      - 'graphmap'
+      - 'bzip2@1.0.8'
+      - 'boost@1.70.0'
+      - 'xz@5.2.4'
+      - 'netcdf-fortran'
+      - 'netcdf-c +mpi'
+      - 'llvm'
+      - 'cairo +X+gobject+pdf'
+      - 'cdo'
+      - 'postgresql'
+      - 'openjdk@11.0.2'
+      - 'mpich'
+      - 'grackle'
+      - 'nektar'
+      - 'metis +gdb'
+      - 'zlib %gcc@8.3.0'
+      - 'curl %gcc@8.3.0'
+      - 'openssl %gcc@8.3.0'
+      - 'netlib-lapack %gcc@8.3.0'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
-      - 'blast-plus'
+      - 'blast-plus ^perl@5.30.0'
       - 'bowtie'
-      - 'bowtie2'
+      - 'bowtie2 ^perl@5.30.0'
       - 'bedtools2'
       - 'cufflinks'
       - 'canu'
       - 'flash'
-      - 'fastqc'
+      - 'fastqc ^perl@5.30.0'
       - 'gatk'
       - 'hisat2'
       - 'megahit'
+      - 'mrbayes'
       - 'ncbi-rmblastn'
       - 'py-htseq'
       - 'py-quast'
@@ -60,14 +89,29 @@ modules:
       - 'vsearch'
       - 'usearch'
       - 'lammps'
+      - 'vardictjava'
+      - 'blast-plus'
       - 'openfoam'
       - 'gromacs'
       - 'nwchem'
       - 'cp2k'
       - 'nest'
       - 'quantum-espresso'
+      - 'vt'
+      - 'gmap-gsnap'
+      - 'vardictjava'
+      - 'star'
+      - 'hmmer'
+      - 'salmon'
+      - 'jellyfish ^perl@5.30.0'
+      - 'sratoolkit'
+      - 'perl-bioperl'
+      - 'bcftools'
+      - 'rmats'
+      - 'py-matplotlib'
+      - 'beast1' 
     blacklist: ['%gcc', '%intel', '%pgi']
-      
+
 packages:
   all:
     compiler: [gcc, intel, pgi]
@@ -77,8 +121,6 @@ packages:
       lapack: [openblas, intel-mkl]
       scalapack: [netlib-scalapack, intel-mkl]
     variants: ~mpi +openmp
-  python:
-    variants: +ucs4
   intel-mkl:
     variants: threads=openmp
   openblas:
@@ -91,6 +133,8 @@ packages:
     paths:
       slurm@17-11-9-13: /usr
     buildable: False
+  intel-parallel-studio:
+    variants: +inspector +itac +mkl +mpi +advisor +vtune threads=openmp
   libfabric:
     paths:
       libfabric@1.6.2: /usr
@@ -129,11 +173,11 @@ compilers:
       modules: []
       operating_system: centos7
       paths:
-        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-q22bkvdaih2plzd6fzrbg72ewawbtcsw/bin/gcc
-        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-q22bkvdaih2plzd6fzrbg72ewawbtcsw/bin/g++
-        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-q22bkvdaih2plzd6fzrbg72ewawbtcsw/bin/gfortran
-        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-5.4.0-q22bkvdaih2plzd6fzrbg72ewawbtcsw/bin/gfortran
-      spec: gcc@5.4.0
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-aoqn7jsisvrj2u5puapmiufudxmm6wt4/bin/gcc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-aoqn7jsisvrj2u5puapmiufudxmm6wt4/bin/g++
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-aoqn7jsisvrj2u5puapmiufudxmm6wt4/bin/gfortran
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-8.3.0-aoqn7jsisvrj2u5puapmiufudxmm6wt4/bin/gfortran
+      spec: gcc@8.3.0
       target: x86_64
   - compiler:
       environment: {}
@@ -142,10 +186,10 @@ compilers:
       modules: []
       operating_system: centos7
       paths:
-        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-9.2.0-6snvhqjum3bfpup574azrjrt7kfwyg5s/bin/gcc
-        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-9.2.0-6snvhqjum3bfpup574azrjrt7kfwyg5s/bin/g++
-        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-9.2.0-6snvhqjum3bfpup574azrjrt7kfwyg5s/bin/gfortran
-        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-9.2.0-6snvhqjum3bfpup574azrjrt7kfwyg5s/bin/gfortran
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-9.2.0-wqdecm4rkyyhejagxwmnabt6lscgm45d/bin/gcc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-9.2.0-wqdecm4rkyyhejagxwmnabt6lscgm45d/bin/g++
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-9.2.0-wqdecm4rkyyhejagxwmnabt6lscgm45d/bin/gfortran
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/gcc-9.2.0-wqdecm4rkyyhejagxwmnabt6lscgm45d/bin/gfortran
       spec: gcc@9.2.0
       target: x86_64
   - compiler:
@@ -160,6 +204,32 @@ compilers:
         f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.4-zxtvkrsgqvhud4og62e55kwgqvhy26d3/compilers_and_libraries_2019.4.243/linux/bin/intel64/ifort
         fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.4-zxtvkrsgqvhud4og62e55kwgqvhy26d3/compilers_and_libraries_2019.4.243/linux/bin/intel64/ifort
       spec: intel@19.0.4
+      target: x86_64
+  - compiler:
+      operating_system: centos7
+      modules: []
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      paths:
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.5-2wbf5cihe2454tnokwkbxjjym4nozecd/bin/icc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.5-2wbf5cihe2454tnokwkbxjjym4nozecd/bin/icpc
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.5-2wbf5cihe2454tnokwkbxjjym4nozecd/bin/ifort
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-19.0.5-2wbf5cihe2454tnokwkbxjjym4nozecd/bin/ifort
+      spec: intel@19.0.5
+      target: x86_64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      paths:
+        cc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-18.0.4-yzuuq5mpke4i44enduypudbrp2mty2s5/bin/icc
+        cxx: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-18.0.4-yzuuq5mpke4i44enduypudbrp2mty2s5/bin/icpc
+        f77: /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-18.0.4-yzuuq5mpke4i44enduypudbrp2mty2s5/bin/ifort
+        fc:  /lustre/opt/cascadelake/linux-centos7-x86_64/gcc-4.8.5/intel-18.0.4-yzuuq5mpke4i44enduypudbrp2mty2s5/bin/ifort
+      operating_system: centos7
+      spec: intel@18.0.4
       target: x86_64
   - compiler:
       environment: {}
@@ -180,53 +250,63 @@ mirrors:
 
 install:
   # General libs or utilities (mostly compilers or binary ones) for x86_64 platform
-  - 'intel-mpi@2019.4.243 %intel@19.0.4 target=x86_64'
-  - 'intel-mpi@2019.4.243 %gcc@9.2.0 target=x86_64'
-  - 'intel-mkl@2019.3.199 %intel@19.0.4 target=x86_64'
-  - 'intel-mkl@2019.3.199 %gcc@9.2.0 target=x86_64'
-  - 'miniconda2@4.6.14 %gcc@9.2.0 target=x86_64'
-  - 'miniconda3@4.6.14 %gcc@9.2.0 target=x86_64'
-  - 'miniconda2@4.6.14 %intel@19.0.4 target=x86_64'
-  - 'miniconda3@4.6.14 %intel@19.0.4 target=x86_64'
-  - 'cuda@9.0.176 %gcc@5.4.0 target=x86_64 target=x86_64'
-  - 'cuda@9.0.176 %intel@19.0.4 target=x86_64'
-  - 'cuda@10.0.130 %gcc@5.4.0 target=x86_64 target=x86_64'
-  - 'cuda@10.0.130 %intel@19.0.4 target=x86_64'
-  - 'jdk@11.0.2_9 %gcc@9.2.0 target=x86_64 target=x86_64'
-  - 'jdk@11.0.2_9 %intel@19.0.4 target=x86_64'
+  - 'miniconda2@4.6.14 %gcc@4.8.5 target=x86_64'
+  - 'miniconda3@4.6.14 %gcc@4.8.5 target=x86_64'
+  - 'cudnn@7.6.3-10.1-x86_64 %gcc@4.8.5 target=x86_64'
+  # - 'cuda@9.0.176 %gcc@5.4.0 target=x86_64'
+  # - 'cuda@9.0.176 %intel@19.0.5 target=x86_64'
+  # - 'cuda@10.0.130 %gcc@5.4.0 target=x86_64'
+  # - 'cuda@10.0.130 %intel@19.0.5 target=x86_64'
+  # - 'jdk@11.0.2_9 %gcc@4.8.5 target=x86_64'
+  # - 'jdk@11.0.2_9 %intel@19.0.5 target=x86_64'
   - 'emacs+tls %gcc@4.8.5 target=x86_64'
   # Scientific tools optimized for Cascade Lake Platform
-  - 'openblas %gcc@9.2.0 threads=openmp target=cascadelake'
-  - 'openblas %intel@19.0.4 target=cascadelake threads=openmp'
-  - 'stream+openmp %intel@19.0.4 target=cascadelake cflags="-O3 -xHost -ffreestanding -fopenmp"'
+  - 'intel-parallel-studio@cluster.2019.4 %intel@19.0.4 target=cascadelake'
+  - 'intel-mpi@2019.6.154 %intel@19.0.5 target=cascadelake'
+  - 'intel-mpi@2019.6.154 %gcc@9.2.0 target=cascadelake'
+  - 'intel-mkl@2019.5.281 %intel@19.0.5 target=cascadelake'
+  - 'intel-mkl@2019.5.281 %gcc@9.2.0 target=cascadelake'
+  - 'openblas %gcc@9.2.0 target=cascadelake threads=openmp'
+  - 'openblas %intel@19.0.5 target=cascadelake threads=openmp'
+  - 'gsl@2.5 %intel@19.0.5 target=cascadelake'
+  - 'gsl@2.5 %@8.3.0 target=skylake_avx512'
+  - 'stream+openmp %intel@19.0.5 target=cascadelake cflags="-O3 -xHost -ffreestanding -fopenmp"'
   - 'stream+openmp %gcc@9.2.0 target=cascadelake cflags="-O3 -fopenmp"'
   - 'octave+qt+llvm %gcc@9.2.0 target=cascadelake ^openblas ^llvm@7.0.1'
   # Bioinfo Software
   - 'bwa@0.7.17 %gcc@9.2.0 target=cascadelake'
-  - 'bwa@0.7.17 %intel@19.0.4 target=cascadelake'
+  - 'bwa@0.7.17 %intel@19.0.5 target=cascadelake'
   - 'samtools@1.9 %gcc@9.2.0 target=cascadelake'
-  - 'samtools@1.9 %intel@19.0.4 target=cascadelake'
+  - 'samtools@1.9 %intel@19.0.5 target=cascadelake'
   - 'bowtie2@2.3.5 %gcc@9.2.0 target=cascadelake'
-  - 'bowtie2@2.3.5 %intel@19.0.4 target=cascadelake'
+  - 'bowtie2@2.3.5 %intel@19.0.5 target=cascadelake'
   - 'bowtie@1.2.2_p1 %gcc@4.8.5 target=x86_64'
-  # - 'bowtie@1.2.2_p1 %intel@19.0.4' # bowtie conflicts with %intel
+  # - 'bowtie@1.2.2_p1 %intel@19.0.5' # bowtie conflicts with %intel
   - 'hisat2@2.1.0 %gcc@9.2.0 target=cascadelake'
-  - 'hisat2@2.1.0 %intel@19.0.4 target=cascadelake'
+  - 'hisat2@2.1.0 %intel@19.0.5 target=cascadelake'
   - 'tophat@2.1.2 %gcc@4.8.5 target=x86_64'
-  - 'tophat@2.1.2 %intel@19.0.4 target=cascadelake'
+  - 'tophat@2.1.2 %intel@19.0.5 target=cascadelake'
   - 'bismark@0.19.0 %gcc@9.2.0 target=cascadelake'
-  - 'bismark@0.19.0 %intel@19.0.4 target=cascadelake'
+  - 'bismark@0.19.0 %intel@19.0.5 target=cascadelake'
   - 'blast-plus@2.9.0 %gcc@9.2.0 target=cascadelake'
-  # - 'blast-plus@2.9.0 %intel@19.0.4' # blast-plus conflicts with %intel
+  # - 'blast-plus@2.9.0 %intel@19.0.5' # blast-plus conflicts with %intel
   - 'openmpi@3.1.4 %gcc@9.2.0 target=cascadelake'
-  - 'openmpi@3.1.4 %intel@19.0.4 target=cascadelake'
+  - 'openmpi@3.1.4 %intel@19.0.5 target=cascadelake'
   - 'mpich@3.3+hydra+romio+slurm netmod=ofi %gcc@9.2.0 target=cascadelake'
-  - 'mpich@3.3+hydra+romio+slurm netmod=ofi %intel@19.0.4 target=cascadelake'
+  - 'mpich@3.3+hydra+romio+slurm netmod=ofi %intel@19.0.5 target=cascadelake'
   # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %gcc@9.2.0'
-  # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %intel@19.0.4'
-  - 'lammps@20180822+class2+colloid+compress+coreshell+dipole+granular+kspace+lib+manybody+mc+meam+misc+molecule+mpi+mpiio+peri+poems+python+qeq+reax+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp %gcc@9.2.0 target=cascadelake ^openmpi@3.1.4 ^openblas ^libfabric@1.6.2'
+  # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %intel@19.0.5'
+  - 'lammps@20190807+asphere+body+class2+colloid+compress+coreshell+dipole+exceptions+granular+kspace+latte+manybody+mc+meam+misc+molecule+mpiio+peri+poems+python+qeq+reax+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp+mpi %gcc@8.3.0 target=skylake_avx512 ^hdf5+hl ^openmpi+pmi ^python@3.7.4~ucs4'
   - 'openfoam@1812+metis %gcc@9.2.0 target=cascadelake ^openmpi@3.1.4'
-  - 'netcdf-fortran@4.4.5 %intel@19.0.4 target=cascadelake ^netcdf+mpi ^hdf5+fortran+mpi ^intel-mpi@2019.4.234'
+  - 'openfoam@1712+metis %gcc@8.3.0 target=skylake_avx512 ^openmpi@3.1.4' 
+  - 'fftw~mpi@3.3.8 %intel@19.0.5 target=cascadelake'
+  - 'fftw~mpi@3.3.8 %gcc@8.3.0 target=skaylake_avx512'
+  - 'fftw+mpi@3.3.8 %intel@19.0.5 target=cascadelake ^intel-parallel-studio+mpi@cluster.2019.5'
+  - 'fftw+mpi@3.3.8 %gcc@8.3.0 target=skaylake_avx512 ^openmpi@3.1.4'
+  - 'netcdf-fortran@5.4.5 %intel@19.0.5 target=cascadelake ^netcdf+mpi ^hdf5+fortran+mpi ^intel-mpi@2019.4.234'
   - 'netcdf-fortran@4.4.5 %gcc@9.2.0 target=cascadelake ^netcdf+mpi ^hdf5+fortran+mpi ^openmpi@3.1.4'
   - 'nco %gcc@9.2.0 target=cascadelake'
   - 'megahit %gcc@9.2.0 target=cascadelake'
+  - 'gromacs+mpi@2019.4 %intel@19.0.4 simd=AVX_512 target=cascadelake ^intel-parallel-studio@cluster.2019.4'
+  - 'gromacs+mpi@2019.4 %gcc@8.3.0 simd=AVX_512 target=skylake_avx512 ^openmpi@3.1.4'
+  - 'quantum-espresso~openmp+epw+mpi %intel@19.0.5 target=cascadelake ^intel-parallel-studio@cluster.2019.5'
