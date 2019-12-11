@@ -125,6 +125,20 @@ compilers:
         fc:  /home/opt/arm/linux-centos7-aarch64/gcc-4.8.5/gcc-8.3.0-b5btlnhrpaoxguo7atqjty5h45nyyzt3/bin/gfortran 
       spec: gcc@8.3.0
       target: aarch64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc:  /home/opt/arm/linux-centos7-aarch64/gcc-4.8.5/gcc-9.2.0-x4q4kh62atuvndcposvwh75uwxlts3za/bin/gcc 
+        cxx: /home/opt/arm/linux-centos7-aarch64/gcc-4.8.5/gcc-9.2.0-x4q4kh62atuvndcposvwh75uwxlts3za/bin/g++ 
+        f77: /home/opt/arm/linux-centos7-aarch64/gcc-4.8.5/gcc-9.2.0-x4q4kh62atuvndcposvwh75uwxlts3za/bin/gfortran 
+        fc:  /home/opt/arm/linux-centos7-aarch64/gcc-4.8.5/gcc-9.2.0-x4q4kh62atuvndcposvwh75uwxlts3za/bin/gfortran 
+      spec: gcc@9.2.0
+      target: aarch64
+
 
 install:
   - 'openblas %gcc@7.4.0 threads=openmp'
