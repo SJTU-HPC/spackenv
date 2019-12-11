@@ -59,6 +59,7 @@ modules:
       - 'curl %gcc@8.3.0'
       - 'openssl %gcc@8.3.0'
       - 'netlib-lapack %gcc@8.3.0'
+      - 'scons'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
@@ -109,7 +110,9 @@ modules:
       - 'bcftools'
       - 'rmats'
       - 'py-matplotlib'
-      - 'beast1' 
+      - 'beast1'
+      - 'py-crossmap'
+      - 'openfoam-org'
     blacklist: ['%gcc', '%intel', '%pgi']
 
 packages:
