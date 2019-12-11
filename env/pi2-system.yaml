@@ -60,6 +60,7 @@ modules:
       - 'openssl %gcc@8.3.0'
       - 'netlib-lapack %gcc@8.3.0'
       - 'scons'
+      - 'cantera'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
