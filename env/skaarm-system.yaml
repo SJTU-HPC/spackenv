@@ -89,7 +89,7 @@ packages:
   openblas:
     variants: ~avx2 ~avx512 reads=openmp
   openmpi:
-    variants: +legacylaunchers fabrics=verbs
+    variants: +pmi +legacylaunchers fabrics=verbs schedulers=slurm
   slurm:
     paths:
       slurm@18-08-1-1: /usr
