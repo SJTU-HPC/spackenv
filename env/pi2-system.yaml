@@ -112,7 +112,6 @@ modules:
       - 'rmats'
       - 'py-matplotlib'
       - 'beast1'
-      - 'py-crossmap'
       - 'openfoam-org'
     blacklist: ['%gcc', '%intel', '%pgi']
 
