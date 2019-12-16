@@ -114,6 +114,7 @@ modules:
       - 'py-matplotlib'
       - 'beast1'
       - 'lumpy-sv'
+      - 'libbeagle'
     blacklist: ['%gcc', '%intel', '%pgi']
 
 packages:
