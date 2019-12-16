@@ -61,6 +61,7 @@ modules:
       - 'netlib-lapack %gcc@8.3.0'
       - 'scons'
       - 'cantera'
+      - 'openfoam-org'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
@@ -112,7 +113,7 @@ modules:
       - 'rmats'
       - 'py-matplotlib'
       - 'beast1'
-      - 'openfoam-org'
+      - 'lumpy-sv'
     blacklist: ['%gcc', '%intel', '%pgi']
 
 packages:
