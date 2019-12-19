@@ -114,7 +114,7 @@ modules:
       - 'py-matplotlib'
       - 'beast1'
       - 'lumpy-sv'
-      - 'libbeagle'
+      - 'libbeagle +cuda'
     blacklist: ['%gcc', '%intel', '%pgi']
 
 packages:
