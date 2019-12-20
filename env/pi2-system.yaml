@@ -58,7 +58,7 @@ modules:
       - 'zlib %gcc@8.3.0'
       - 'curl %gcc@8.3.0'
       - 'openssl %gcc@8.3.0'
-      - 'netlib-lapack %gcc@8.3.0'
+      - 'netlib-lapack ^netlib-xblas@1.0.248'
       - 'scons'
       - 'cantera'
       - 'openfoam-org'
@@ -114,7 +114,7 @@ modules:
       - 'py-matplotlib'
       - 'beast1'
       - 'lumpy-sv'
-      - 'libbeagle +cuda'
+      - 'libbeagle ^cuda@10.2.89'
     blacklist: ['%gcc', '%intel', '%pgi']
 
 packages:
