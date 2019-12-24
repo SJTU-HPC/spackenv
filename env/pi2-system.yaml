@@ -62,6 +62,7 @@ modules:
       - 'scons'
       - 'cantera'
       - 'openfoam-org'
+      - 'siesta'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
