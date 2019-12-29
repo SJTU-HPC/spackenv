@@ -63,6 +63,7 @@ modules:
       - 'cantera'
       - 'openfoam-org'
       - 'siesta'
+      - 'abinit'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
