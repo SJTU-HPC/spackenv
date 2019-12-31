@@ -304,7 +304,7 @@ install:
   - 'mpich@3.3+hydra+romio+slurm netmod=ofi %intel@19.0.5 target=cascadelake'
   # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %gcc@9.2.0'
   # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %intel@19.0.5'
-  - 'lammps@20190807+asphere+body+class2+colloid+compress+coreshell+dipole+exceptions+granular+kspace+latte+manybody+mc+meam+misc+molecule+mpiio+peri+poems+python+qeq+reax+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp+mpi %gcc@8.3.0 target=skylake_avx512 ^hdf5+hl ^openmpi+pmi ^python@3.7.4~ucs4'
+  - 'lammps@20190807+asphere+body+class2+colloid+compress+coreshell+dipole+exceptions+granular+kokkos+kspace+latte+manybody+mc+meam+misc+molecule+mpiio+peri+poems+python+qeq+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp+user-reaxc+mpi %gcc@8.3.0 target=skylake_avx512 ^openmpi'
   - 'openfoam@1812+metis %gcc@9.2.0 target=cascadelake ^openmpi@3.1.4'
   - 'openfoam@1712+metis %gcc@8.3.0 target=skylake_avx512 ^openmpi@3.1.4' 
   - 'fftw~mpi@3.3.8 %intel@19.0.5 target=cascadelake'
