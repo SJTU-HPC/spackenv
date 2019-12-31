@@ -58,7 +58,7 @@ modules:
       - 'zlib %gcc@8.3.0'
       - 'curl %gcc@8.3.0'
       - 'openssl %gcc@8.3.0'
-      - 'netlib-lapack ^netlib-xblas@1.0.248'
+      - 'netlib-lapack +external-blas'
       - 'scons'
       - 'cantera'
       - 'openfoam-org'
