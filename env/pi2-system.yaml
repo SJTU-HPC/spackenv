@@ -65,7 +65,7 @@ modules:
       - 'siesta'
       - 'abinit'
       - 'libxc@4.3.2'
-      - 'kokkos'
+      - 'mpich@3.3.2'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
