@@ -66,6 +66,7 @@ modules:
       - 'abinit'
       - 'libxc@4.3.2'
       - 'mpich@3.3.2'
+      - 'netcdf-cxx4'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
