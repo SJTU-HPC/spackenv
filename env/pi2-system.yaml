@@ -68,6 +68,7 @@ modules:
       - 'mpich@3.3.2'
       - 'netcdf-cxx4'
       - 'libpng'
+      - 'jasper'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
