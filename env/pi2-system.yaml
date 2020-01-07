@@ -69,6 +69,8 @@ modules:
       - 'netcdf-cxx4'
       - 'libpng'
       - 'jasper'
+      - 'elpa'
+      - 'libxml2'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
