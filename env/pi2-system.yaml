@@ -47,7 +47,6 @@ modules:
       - 'netcdf-fortran'
       - 'netcdf-c +mpi'
       - 'llvm'
-      - 'cairo +X+gobject+pdf'
       - 'cdo'
       - 'postgresql'
       - 'openjdk@11.0.2'
