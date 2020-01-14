@@ -69,7 +69,6 @@ modules:
       - 'libpng'
       - 'jasper'
       - 'elpa'
-      - 'libxml2'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
