@@ -147,6 +147,8 @@ packages:
     buildable: False
   intel-parallel-studio:
     variants: +inspector +itac +mkl +mpi +advisor +vtune threads=openmp
+  r:
+    variants: +X +external-lapack
   libfabric:
     paths:
       libfabric@1.6.2: /usr
