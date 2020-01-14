@@ -138,6 +138,7 @@ packages:
     variants: +avx2 +avx512 threads=openmp
   openmpi:
     variants: +pmi +legacylaunchers fabrics=libfabric schedulers=slurm
+    version: [3.1.5]
   mpich:
     variants: +hydra +romio +slurm netmod=ofi
   slurm:
