@@ -27,7 +27,7 @@ modules:
       - 'cuda'
       - 'cudnn'
       - 'jdk' 
-      - 'openblas +avx2+avx512 cpu_target=auto ~ilp64+pic+shared threads=openmp '
+      - 'openblas'
       - 'octave'
       - 'stream'
       - 'emacs'
@@ -136,6 +136,7 @@ packages:
     variants: threads=openmp
   openblas:
     variants: +avx2 +avx512 threads=openmp
+    version: [0.3.7]
   openmpi:
     variants: +pmi +legacylaunchers fabrics=libfabric schedulers=slurm
     version: [3.1.5]
