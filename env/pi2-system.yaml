@@ -148,7 +148,8 @@ packages:
   intel-parallel-studio:
     variants: +inspector +itac +mkl +mpi +advisor +vtune threads=openmp
   r:
-    variants: +X +external-lapack
+    variants: +external-lapack
+    version: [3.6.2]
   libfabric:
     paths:
       libfabric@1.6.2: /usr
