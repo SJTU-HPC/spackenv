@@ -141,10 +141,6 @@ packages:
     version: [3.1.5]
   mpich:
     variants: +hydra +romio +slurm netmod=ofi
-  slurm:
-    paths:
-      slurm@17-11-9-13: /usr
-    buildable: False
   intel-parallel-studio:
     variants: +inspector +itac +mkl +mpi +advisor +vtune threads=openmp
   r:
@@ -153,6 +149,15 @@ packages:
   libfabric:
     paths:
       libfabric@1.6.2: /usr
+  slurm:
+    paths:
+      slurm@17-11-9-13: /usr
+    buildable: False
+  cairo:
+    variants: +X +pdf +ft +fc +gobject +png +svg
+    paths:
+      cairo@1.15.12: /usr
+    buildable: False
 
 compilers:
   - compiler:
