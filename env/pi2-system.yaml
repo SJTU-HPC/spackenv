@@ -322,8 +322,9 @@ install:
   - 'bismark@0.19.0 %intel@19.0.5 target=cascadelake'
   - 'blast-plus@2.9.0 %gcc@9.2.0 target=cascadelake'
   # - 'blast-plus@2.9.0 %intel@19.0.5' # blast-plus conflicts with %intel
-  - 'openmpi@3.1.5 %gcc@9.2.0 target=cascadelake'
-  - 'openmpi@3.1.5 %intel@19.0.5 target=cascadelake'
+  - 'openmpi %gcc@9.2.0 target=cascadelake'
+  - 'openmpi %gcc@8.3.0 target=skylake_avx512'
+  - 'openmpi %intel@19.0.5 target=cascadelake'
   - 'mpich@3.3+hydra+romio+slurm netmod=ofi %gcc@9.2.0 target=cascadelake'
   - 'mpich@3.3+hydra+romio+slurm netmod=ofi %intel@19.0.5 target=cascadelake'
   # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %gcc@9.2.0'
