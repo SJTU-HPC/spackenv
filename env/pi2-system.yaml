@@ -31,7 +31,7 @@ modules:
       - 'octave'
       - 'stream'
       - 'emacs'
-      - 'openmpi@3.1.5'
+      - 'openmpi'
       - 'perl'
       - 'nccl'
       - 'pgi'
@@ -138,6 +138,8 @@ packages:
   openmpi:
     variants: +pmi +legacylaunchers fabrics=libfabric schedulers=slurm
     version: [3.1.5]
+  fftw:
+    version: [3.3.8]
   mpich:
     variants: +hydra +romio +slurm netmod=ofi
   intel-parallel-studio:
@@ -332,10 +334,12 @@ install:
   - 'lammps@20190807+asphere+body+class2+colloid+compress+coreshell+dipole+exceptions+granular+kokkos+kspace+latte+manybody+mc+meam+misc+molecule+mpiio+peri+poems+python+qeq+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp+user-reaxc+mpi %gcc@8.3.0 target=skylake_avx512 ^openmpi@3.1.5'
   - 'openfoam@1812+metis %gcc@9.2.0 target=cascadelake ^openmpi@3.1.5'
   - 'openfoam@1712+mgridgen+paraview %gcc@7.4.0 target=skylake_avx512 ^openmpi@3.1.5'
-  - 'fftw~mpi@3.3.8 %intel@19.0.5 target=cascadelake'
-  - 'fftw~mpi@3.3.8 %gcc@8.3.0 target=skaylake_avx512'
-  - 'fftw+mpi@3.3.8 %intel@19.0.5 target=cascadelake ^intel-parallel-studio+mpi@cluster.2019.5'
-  - 'fftw+mpi@3.3.8 %gcc@8.3.0 target=skaylake_avx512 ^openmpi@3.1.5'
+  - 'fftw~mpi %intel@19.0.5 target=cascadelake'
+  - 'fftw~mpi %gcc@9.2.0 target=cascadelake'
+  - 'fftw~mpi %gcc@8.3.0 target=skaylake_avx512'
+  - 'fftw+mpi %intel@19.0.5 target=cascadelake ^intel-parallel-studio+mpi@cluster.2019.5'
+  - 'fftw+mpi %gcc@9.2.0 target=cascadelake ^openmpi'
+  - 'fftw+mpi %gcc@8.3.0 target=skaylake_avx512 ^openmpi'
   - 'netcdf-fortran@5.4.5 %intel@19.0.5 target=cascadelake ^netcdf+mpi ^hdf5+fortran+mpi ^intel-mpi@2019.4.234'
   - 'netcdf-fortran@4.4.5 %gcc@9.2.0 target=cascadelake ^netcdf+mpi ^hdf5+fortran+mpi ^openmpi@3.1.5'
   - 'nco %gcc@9.2.0 target=cascadelake'
