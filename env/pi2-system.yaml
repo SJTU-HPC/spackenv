@@ -27,6 +27,7 @@ modules:
       - 'cuda'
       - 'cudnn'
       - 'jdk' 
+      - 'openjdk' 
       - 'openblas'
       - 'octave'
       - 'stream'
@@ -47,7 +48,6 @@ modules:
       - 'llvm'
       - 'cdo'
       - 'postgresql'
-      - 'openjdk@11.0.2'
       - 'mpich'
       - 'grackle'
       - 'nektar'
@@ -147,6 +147,8 @@ packages:
   r:
     variants: +external-lapack
     version: [3.6.2]
+  jdk:
+    version: [12.0.2_10]
   libfabric:
     paths:
       libfabric@1.6.2: /usr
@@ -291,8 +293,7 @@ install:
   # - 'cuda@9.0.176 %intel@19.0.5 target=x86_64'
   # - 'cuda@10.0.130 %gcc@5.4.0 target=x86_64'
   # - 'cuda@10.0.130 %intel@19.0.5 target=x86_64'
-  # - 'jdk@11.0.2_9 %gcc@4.8.5 target=x86_64'
-  # - 'jdk@11.0.2_9 %intel@19.0.5 target=x86_64'
+  - 'jdk %gcc@4.8.5 target=x86_64'
   - 'emacs+tls %gcc@4.8.5 target=x86_64'
   # Scientific tools optimized for Cascade Lake Platform
   - 'intel-parallel-studio@cluster.2019.4 %intel@19.0.4 target=cascadelake'
