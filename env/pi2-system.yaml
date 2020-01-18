@@ -39,7 +39,8 @@ modules:
       - 'pgi'
       - 'precice'
       - 'gsl'
-      - 'fftw'
+      - 'fftw+openmp' # "'fftw~openmp' is for abinit only, not for external use"
+      - 'fftw+mpi'
       - 'hdf5'
       - 'graphmap'
       - 'boost'
@@ -128,12 +129,17 @@ packages:
     variants: ~mpi +openmp
   intel-mkl:
     variants: threads=openmp
+  abinit:
+    variants: +mpi
+    version: [8.10.3]
   openblas:
     variants: +avx2 +avx512 threads=openmp
     version: [0.3.7]
   openmpi:
     variants: +pmi +legacylaunchers fabrics=libfabric schedulers=slurm
     version: [3.1.5]
+  perl:
+    version: [5.30.0]
   mvapich2:
     variants: fabrics=psm2 file_systems=lustre process_managers=slurm
     version: [2.3.2]
@@ -353,3 +359,4 @@ install:
   - 'gromacs+mpi@2019.2 %gcc@8.3.0 simd=AVX_512 target=skylake_avx512 ^openmpi'
   - 'gromacs+mpi@2019.4 %gcc@8.3.0 simd=AVX_512 target=skylake_avx512 ^openmpi'
   - 'quantum-espresso~openmp+epw+mpi %intel@19.0.5 target=cascadelake ^intel-parallel-studio@cluster.2019.5'
+  - 'abinit %gcc@8.3.0 ^openmpi ^fftw~openmp precision=float,double' # Bugs: 1) Failed to concret abinit without specifying fftw~openmp; 2) Abinit requires fftw precision=float,double
