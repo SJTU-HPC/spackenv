@@ -63,6 +63,7 @@ modules:
       - 'netcdf-cxx4'
       - 'jasper'
       - 'elpa'
+      - 'eigen'
       # Bioinfo Software
       - 'bwa'
       - 'bismark'
@@ -361,5 +362,6 @@ install:
   - 'gromacs+mpi@2019.4 %gcc@8.3.0 simd=AVX_512 target=skylake_avx512 ^openmpi'
   - 'quantum-espresso~openmp+epw+mpi %intel@19.0.5 target=cascadelake ^intel-parallel-studio@cluster.2019.5'
   - 'abinit %gcc@8.3.0 ^openmpi ^fftw~openmp precision=float,double' # Bugs: 1) Failed to concret abinit without specifying fftw~openmp; 2) Abinit requires fftw precision=float,double
-  - 'mcl %gcc@9.2.0' 
+  - 'mcl %gcc@9.2.0'
+  - 'eigen %gcc@9.2.0' 
 
