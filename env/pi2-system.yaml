@@ -35,6 +35,7 @@ modules:
       - 'openmpi'
       - 'mvapich2'
       - 'perl'
+      - 'python'
       - 'nccl'
       - 'pgi'
       - 'precice'
