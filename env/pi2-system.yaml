@@ -350,6 +350,7 @@ install:
   - 'fftw+mpi %gcc@8.3.0 target=skaylake_avx512 ^openmpi'
   - 'netcdf-fortran@5.4.5 %intel@19.0.5 target=cascadelake ^netcdf+mpi ^hdf5+fortran+mpi ^intel-mpi@2019.4.234'
   - 'netcdf-fortran@4.4.5 %gcc@9.2.0 target=cascadelake ^netcdf+mpi ^hdf5+fortran+mpi ^openmpi@3.1.5'
+  - 'spack install netcdf-fortran@4.4.5 %gcc@8.3.0 target=skylake_avx512 ^hdf5@1.10.5' #Extra for hdf5 living version 
   - 'nco %gcc@9.2.0 target=cascadelake'
   - 'megahit %gcc@9.2.0 target=cascadelake'
   - 'gromacs+mpi@2019.2 %intel@19.0.4 simd=AVX_512 target=cascadelake ^intel-parallel-studio@cluster.2019.4'
