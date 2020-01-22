@@ -182,6 +182,10 @@ packages:
     paths:
       bison@3.0.4: /usr
     buildable: False
+  flex:
+    paths:
+      flex@2.5.37: /usr
+    buildable: False
   texinfo:
     paths:
       texinfo@5.1: /usr
