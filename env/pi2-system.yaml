@@ -359,4 +359,4 @@ install:
   - 'abinit %gcc@8.3.0 ^openmpi ^fftw~openmp precision=float,double' # Bugs: 1) Failed to concret abinit without specifying fftw~openmp; 2) Abinit requires fftw precision=float,double
   - 'mcl %gcc@9.2.0'
   - 'eigen %gcc@9.2.0' 
-
+  - 'spack install -j40 mrbayes@3.2.7a+mpi+beagle~readline %gcc@8.3.0 target=skylake_avx512' #Varint readline doesn't recommend to install with mpi
