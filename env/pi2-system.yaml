@@ -180,6 +180,18 @@ packages:
     paths:
       bison@3.0.4: /usr
     buildable: False
+  texinfo:
+    paths:
+      texinfo@5.1: /usr
+    buildable: False
+  help2man:
+    paths:
+      help2man@1.41: /usr
+    buildable: False
+  findutils:
+    paths:
+      findutils@4.5.11: /usr
+    buildable: False
   sundials:
     variants: +mpi+openmp
     version: [5.0.0]
