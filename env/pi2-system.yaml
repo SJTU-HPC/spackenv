@@ -192,6 +192,10 @@ packages:
     paths:
       findutils@4.5.11: /usr
     buildable: False
+  subversion:
+    paths:
+      subversion@1.7.14: /usr
+    buildable: False
   sundials:
     variants: +mpi+openmp
     version: [5.0.0]
