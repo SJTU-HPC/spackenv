@@ -162,11 +162,6 @@ packages:
     paths:
       slurm@17-11-9-13: /usr
     buildable: False
-  cairo:
-    variants: +X +pdf +ft +fc +gobject +png +svg
-    paths:
-      cairo@1.15.12: /usr
-    buildable: False
 
 compilers:
   - compiler:
