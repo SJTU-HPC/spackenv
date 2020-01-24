@@ -145,6 +145,9 @@ packages:
     version: [5.30.0]
   python:
     version: [3.7.6, 2.7.16]
+  precice:
+    variants: +python
+    version: [1.6.1]
   mvapich2:
     variants: fabrics=psm2 file_systems=lustre process_managers=slurm
     version: [2.3.2]
@@ -391,7 +394,7 @@ install:
   - 'fftw+mpi %gcc@8.3.0 target=skaylake_avx512 '
   - 'netcdf-fortran@5.4.5 %intel@19.0.5 target=cascadelake ^netcdf+mpi ^hdf5+fortran+mpi ^intel-mpi@2019.4.234'
   - 'netcdf-fortran@4.4.5 %gcc@9.2.0 target=cascadelake ^netcdf+mpi ^hdf5+fortran+mpi'
-  - 'spack install netcdf-fortran@4.4.5 %gcc@8.3.0 target=skylake_avx512 ^hdf5@1.10.5' #Extra for hdf5 living version 
+  - 'netcdf-fortran@4.4.5 %gcc@8.3.0 target=skylake_avx512 ^hdf5@1.10.5' #Extra for hdf5 living version 
   - 'nco %gcc@9.2.0 target=cascadelake'
   - 'megahit %gcc@9.2.0 target=cascadelake'
   - 'gromacs+mpi@2019.2 %intel@19.0.4 simd=AVX_512 target=cascadelake ^intel-parallel-studio@cluster.2019.4'
@@ -404,5 +407,6 @@ install:
   - 'abinit %gcc@8.3.0 ^fftw~openmp precision=float,double' # Bugs: 1) Failed to concret abinit without specifying fftw~openmp; 2) Abinit requires fftw precision=float,double
   - 'mcl %gcc@9.2.0'
   - 'eigen %gcc@9.2.0' 
-  - 'spack install mrbayes@3.2.7a+mpi+beagle~readline %gcc@8.3.0 target=skylake_avx512' #Varint readline doesn't recommend to install with mpi
-  - 'spack install sundials@5.0.0+mpi+openmp %gcc@8.3.0 target=skylake_avx512'
+  - 'precice+python %gcc@8.3.0'
+  - 'mrbayes@3.2.7a+mpi+beagle~readline %gcc@8.3.0' #Varint readline doesn't recommend to install with mpi
+  - 'sundials@5.0.0+mpi+openmp %gcc@8.3.0'
