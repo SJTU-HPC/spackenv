@@ -143,6 +143,8 @@ packages:
     version: [3.1.5]
   perl:
     version: [5.30.0]
+  python:
+    version: [3.7.6, 2.7.16]
   mvapich2:
     variants: fabrics=psm2 file_systems=lustre process_managers=slurm
     version: [2.3.2]
