@@ -156,6 +156,8 @@ packages:
   hdf5:
     variants: +fortran +hl
     version: [1.10.6]
+  netcdf-fortran:
+    version: [4.5.2]
   mpich:
     variants: +hydra +romio +slurm netmod=ofi
   intel-parallel-studio:
@@ -395,9 +397,8 @@ install:
   - 'fftw+mpi %intel@19.0.5 target=cascadelake ^intel-parallel-studio+mpi@cluster.2019.5'
   - 'fftw+mpi %gcc@9.2.0 target=cascadelake '
   - 'fftw+mpi %gcc@8.3.0 target=skaylake_avx512 '
-  - 'netcdf-fortran@5.4.5 %intel@19.0.5 target=cascadelake ^netcdf+mpi ^hdf5+fortran+mpi ^intel-mpi@2019.4.234'
-  - 'netcdf-fortran@4.4.5 %gcc@9.2.0 target=cascadelake ^netcdf+mpi ^hdf5+fortran+mpi'
-  - 'netcdf-fortran@4.4.5 %gcc@8.3.0 target=skylake_avx512 ^hdf5@1.10.5' #Extra for hdf5 living version 
+  - 'netcdf-fortran~mpi %gcc@8.3.0'
+  - 'netcdf-fortran+mpi %gcc@8.3.0'
   - 'nco %gcc@9.2.0 target=cascadelake'
   - 'megahit %gcc@9.2.0 target=cascadelake'
   - 'gromacs+mpi@2019.2 %intel@19.0.4 simd=AVX_512 target=cascadelake ^intel-parallel-studio@cluster.2019.4'
