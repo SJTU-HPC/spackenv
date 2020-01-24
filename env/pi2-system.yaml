@@ -153,6 +153,9 @@ packages:
     version: [2.3.2]
   fftw:
     version: [3.3.8]
+  hdf5:
+    variants: +fortran +hl
+    version: [1.10.6]
   mpich:
     variants: +hydra +romio +slurm netmod=ofi
   intel-parallel-studio:
