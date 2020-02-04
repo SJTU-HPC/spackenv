@@ -136,6 +136,9 @@ packages:
   abinit:
     variants: +mpi
     version: [8.10.3]
+  boost:
+    variants: +mpi
+    version: [1.65.1]
   openblas:
     variants: +avx2 +avx512 threads=openmp
     version: [0.3.7]
