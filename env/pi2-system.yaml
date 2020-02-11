@@ -137,8 +137,7 @@ packages:
     variants: +mpi
     version: [8.10.3]
   boost:
-    variants: +mpi
-    version: [1.65.1]
+    version: [1.70.0]
   openblas:
     variants: +avx2 +avx512 threads=openmp
     version: [0.3.7]
@@ -425,3 +424,5 @@ install:
   - 'precice+python %gcc@8.3.0'
   - 'mrbayes@3.2.7a+mpi+beagle~readline %gcc@8.3.0' #Varint readline doesn't recommend to install with mpi
   - 'sundials@5.0.0+mpi+openmp %gcc@8.3.0'
+  - 'boost %gcc@8.3.0'
+  - 'boost+mpi@1.65.1 %gcc@4.8.5' # Required explicitly by acct-umjplw
