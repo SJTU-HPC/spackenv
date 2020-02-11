@@ -147,7 +147,7 @@ packages:
   perl:
     version: [5.30.0]
   python:
-    version: [3.7.6, 2.7.16]
+    version: [3.7.4, 2.7.16]
   precice:
     variants: +python
     version: [1.6.1]
