@@ -28,7 +28,7 @@ modules:
       - 'cudnn'
       - 'jdk' 
       - 'openjdk' 
-      - 'openblas'
+      - 'openblas+avx2+avx512' # Explicitly export deprecated openbals to modules, hopefully it will be removed soon
       - 'octave'
       - 'stream'
       - 'emacs'
