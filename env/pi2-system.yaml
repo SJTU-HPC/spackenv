@@ -360,6 +360,8 @@ install:
   # - 'cuda@9.0.176 %intel@19.0.5 target=x86_64'
   # - 'cuda@10.0.130 %gcc@5.4.0 target=x86_64'
   # - 'cuda@10.0.130 %intel@19.0.5 target=x86_64'
+  - 'cudnn@7.6.5.32-10.1-linux-x64 %gcc@4.8.5 target=x86_64 ^cuda@10.1.243%gcc@4.8.5/42lx5ih' #Specifing installed cuda , required explicitly by acct-meqf-3
+  - 'cudnn@7.6.5.32-9.0-linux-x64 %gcc@4.8.5 target=x86_64 ^cuda@9.0.176/pusmroe' #Specifing installed cuda ,  required explicitly by acct-meqf-3
   - 'jdk %gcc@4.8.5 target=x86_64'
   - 'emacs+tls %gcc@4.8.5 target=x86_64'
   # Scientific tools optimized for Cascade Lake Platform
