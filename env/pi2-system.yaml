@@ -180,6 +180,7 @@ packages:
   jdk:
     version: [12.0.2_10]
   libfabric:
+    variants: fabrics=sockets,tcp,udp,psm2,verbs
     paths:
       libfabric@1.6.2: /usr
   slurm:
