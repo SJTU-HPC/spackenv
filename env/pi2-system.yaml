@@ -433,3 +433,4 @@ install:
   - 'sundials@5.0.0+mpi+openmp %gcc@8.3.0'
   - 'boost %gcc@8.3.0'
   - 'boost+mpi@1.65.1 %gcc@4.8.5' # Required explicitly by acct-umjplw
+  - 'cp2k@6.1+cuda+openmp+mpi cuda_arch=70 %gcc@8.3.0' #Replacing with cuda added version
