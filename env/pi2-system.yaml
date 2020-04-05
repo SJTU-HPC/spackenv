@@ -131,6 +131,8 @@ packages:
       blas: [openblas, intel-mkl]
       lapack: [openblas, intel-mkl]
       scalapack: [netlib-scalapack, intel-mkl]
+  gcc:
+    variants: languages=ada,c,c++,fortran
   intel-mkl:
     variants: threads=openmp
   abinit:

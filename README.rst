@@ -72,7 +72,7 @@ Spackenv 可根据筛选条件为部分面向最终用户的软件生成 Environ
 
 使用spack安装gcc, pgi, intel编译器套件::
 
-  $ spack install gcc@8.3.0 %gcc@4.8.5
+  $ spack install gcc@8.3.0 languages=ada,c,c++,fortran %gcc@4.8.5
   $ spack install pgi@19.4+nvidia+single~network %gcc@4.8.5
   $ rm -rf ~/intel; spack install intel@19.0.4 %gcc@4.8.5
   $ rm -rf ~/intel; spack install intel-parallel-studio@cluster.2018.3+advisor+clck+daal+inspector+ipp+itac+mkl+mpi+tbb+vtune %gcc@4.8.5 threads=openmp
