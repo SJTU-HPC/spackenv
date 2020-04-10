@@ -173,7 +173,7 @@ packages:
   mpich:
     variants: +hydra +romio +slurm netmod=ofi
   intel-parallel-studio:
-    variants: +inspector +itac +mkl +mpi +advisor +vtune threads=openmp
+    variants: +clck +inspector +itac +mkl +mpi +advisor +vtune threads=openmp
   openfoam:
     version: [1912, 1812_191001, 1716]
   r:
