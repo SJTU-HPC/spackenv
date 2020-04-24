@@ -449,3 +449,4 @@ install:
   - 'boost %gcc@8.3.0'
   - 'boost+mpi@1.65.1 %gcc@4.8.5' # Required explicitly by acct-umjplw
   - 'cp2k@6.1+cuda+openmp+mpi cuda_arch=70 %gcc@8.3.0' #Replacing with cuda added version
+  - 'cdo@1.9.8 ^hdf5@1.10.6~cxx~debug~fortran+hl~mpi+pic+shared~szip+threadsafe ^netcdf-c@4.7.3~dap~hdf4~mpi~parallel-netcdf+pic+shared%gcc@8.3.0' #Required explicitly by acct-hpccesm
