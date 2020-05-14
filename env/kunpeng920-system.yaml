@@ -20,6 +20,7 @@ modules:
       - 'cudnn'
       - 'jdk' 
       - 'openjdk' 
+      - 'openblas' 
       - 'octave'
       - 'stream'
       - 'emacs'
