@@ -1,0 +1,288 @@
+---
+spack_bin_root:         /lustre/opt/spack
+spack_install_root:     /lustre/opt/kunpeng920
+spack_modules_root:     /lustre/share/spack/modules/kunpeng920
+
+modules:
+  tcl:
+    hash_length: 0
+    naming_scheme: '{name}/{version}-{compiler.name}-{compiler.version}'
+    all:
+      conflict:
+        - '{name}' 
+      suffixes:
+        ^openblas: 'openblas'
+        ^openmpi@4.0.3: 'openmpi'
+    whitelist:
+      - 'gcc'
+      - 'miniconda2'
+      - 'miniconda3'
+      - 'cudnn'
+      - 'jdk' 
+      - 'openjdk' 
+      - 'octave'
+      - 'stream'
+      - 'emacs'
+      - 'openmpi'
+      - 'mvapich2'
+      - 'perl'
+      - 'python'
+      - 'nccl'
+      - 'precice'
+      - 'gsl'
+      - 'fftw+openmp' # "'fftw~openmp' is for abinit only, not for external use"
+      - 'fftw+mpi'
+      - 'hdf5'
+      - 'graphmap'
+      - 'boost'
+      - 'netcdf-fortran'
+      - 'netcdf-c'
+      - 'netcdf-cxx'
+      - 'netcdf-cxx4'
+      - 'llvm'
+      - 'cdo'
+      - 'postgresql'
+      - 'mpich'
+      - 'grackle'
+      - 'nektar'
+      - 'metis +gdb'
+      - 'netlib-lapack ~xblas'
+      - 'scons'
+      - 'cantera'
+      - 'openfoam-org'
+      - 'siesta'
+      - 'abinit'
+      - 'libxc@4.3.2'
+      - 'jasper'
+      - 'elpa'
+      - 'eigen'
+      - 'sundials'
+      # Bioinfo Software
+      - 'bwa'
+      - 'bismark'
+      - 'blast-plus'
+      - 'bowtie'
+      - 'bowtie2 ^perl@5.30.0'
+      - 'bedtools2'
+      - 'cufflinks'
+      - 'canu'
+      - 'flash'
+      - 'fastqc ^perl@5.30.0'
+      - 'gatk'
+      - 'hisat2'
+      - 'megahit'
+      - 'mrbayes'
+      - 'ncbi-rmblastn'
+      - 'py-htseq'
+      - 'py-quast'
+      - 'picard'
+      - 'rna-seqc'
+      - 'r'
+      - 'soapdenovo2'
+      - 'stringtie'
+      - 'samtools ^bzip2@1.0.8'
+      - 'spades'
+      - 'tophat'
+      - 'trinity'
+      - 'vsearch'
+      - 'usearch'
+      - 'lammps'
+      - 'vardictjava'
+      - 'blast-plus'
+      - 'openfoam'
+      - 'gromacs'
+      - 'nwchem'
+      - 'cp2k'
+      - 'nest'
+      - 'quantum-espresso'
+      - 'vt'
+      - 'gmap-gsnap'
+      - 'vardictjava'
+      - 'star'
+      - 'hmmer'
+      - 'salmon'
+      - 'jellyfish ^perl@5.30.0'
+      - 'sratoolkit'
+      - 'perl-bioperl'
+      - 'bcftools'
+      - 'rmats'
+      - 'py-matplotlib'
+      - 'beast1'
+      - 'lumpy-sv'
+      - 'mcl'
+    blacklist: ['%gcc']
+
+packages:
+  all:
+    compiler: [gcc]
+    providers:
+      mpi: [openmpi, mvapich2, mpich]
+      blas: [openblas]
+      lapack: [openblas]
+      scalapack: [netlib-scalapack]
+  gcc:
+    variants: languages=c,c++,fortran
+  abinit:
+    variants: +mpi
+    version: [8.10.3]
+  boost:
+    version: [1.70.0]
+  openblas:
+    variants: threads=openmp
+    version: [0.3.9]
+  openmpi:
+    variants: +pmi +legacylaunchers ~gpfs fabrics=ucx schedulers=slurm
+    version: [4.0.3]
+  perl:
+    version: [5.30.0]
+  python:
+    version: [3.7.4, 2.7.16]
+  precice:
+    variants: +python
+    version: [1.6.1]
+  mvapich2:
+    variants: fabrics=psm2 file_systems=lustre process_managers=slurm
+    version: [2.3.2]
+  fftw:
+    version: [3.3.8]
+  hdf5:
+    variants: +fortran +hl
+    version: [1.10.6]
+  lammps:
+    variants: +asphere+body+class2+colloid+compress+coreshell+dipole+exceptions+granular+kokkos+kspace+latte+manybody+mc+meam+misc+molecule+mpiio+peri+poems+python+qeq+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp+user-reaxc+mpi
+    version: [20190807]
+  netcdf-cxx:
+    version: [4.2]
+  netcdf-c:
+    version: [4.7.3]
+  netcdf-fortran:
+    version: [4.5.2]
+  mpich:
+    variants: +hydra +romio +slurm netmod=ofi
+  openfoam:
+    version: [1912, 1812_191001, 1716]
+  r:
+    variants: +external-lapack
+    version: [3.6.2]
+  jdk:
+    version: [12.0.2_10]
+  slurm:
+    paths:
+      slurm@17-11-9-13: /usr
+    buildable: False
+  cmake:
+    paths:
+      cmake@3.14.6: /usr
+    buildable: False
+  scons:
+    paths:
+      scons@3.1.2: /usr
+    buildable: False
+  bison:
+    paths:
+      bison@3.0.4: /usr
+    buildable: False
+  flex:
+    paths:
+      flex@2.5.37: /usr
+    buildable: False
+  texinfo:
+    paths:
+      texinfo@5.1: /usr
+    buildable: False
+  help2man:
+    paths:
+      help2man@1.41: /usr
+    buildable: False
+  findutils:
+    paths:
+      findutils@4.5.11: /usr
+    buildable: False
+  subversion:
+    paths:
+      subversion@1.7.14: /usr
+    buildable: False
+  sundials:
+    variants: +mpi+openmp
+    version: [5.0.0]
+  ucx:
+    variants: +thread_multiple
+    paths:
+      ucx@1.8.0: /usr
+    buildable: False
+compilers:
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc: /usr/bin/gcc
+        cxx: /usr/bin/g++
+        f77: /usr/bin/gfortran
+        fc: /usr/bin/gfortran
+      spec: gcc@4.8.5
+      target: aarch64
+  - compiler:
+      environment: {}
+      extra_rpaths: []
+      flags: {}
+      modules: []
+      operating_system: centos7
+      paths:
+        cc:  /lustre/opt/kunpeng920/linux-centos7-aarch64/gcc-4.8.5/gcc-9.3.0-a5tvx33on7quyl7o2sygvyjqnysfcw6n/bin/gcc
+        cxx: /lustre/opt/kunpeng920/linux-centos7-aarch64/gcc-4.8.5/gcc-9.3.0-a5tvx33on7quyl7o2sygvyjqnysfcw6n/bin/g++
+        f77: /lustre/opt/kunpeng920/linux-centos7-aarch64/gcc-4.8.5/gcc-9.3.0-a5tvx33on7quyl7o2sygvyjqnysfcw6n/bin/gfortran
+        fc:  /lustre/opt/kunpeng920/linux-centos7-aarch64/gcc-4.8.5/gcc-9.3.0-a5tvx33on7quyl7o2sygvyjqnysfcw6n/bin/gfortran
+      spec: gcc@9.3.0
+      target: aarch64
+
+mirrors:
+  remote_server: http://spack.pi.sjtu.edu.cn/mirror
+
+install:
+  # General libs or utilities (mostly compilers or binary ones) for aarch64 platform
+  - 'miniconda2@4.6.14 %gcc@4.8.5 target=aarch64'
+  - 'miniconda3@4.6.14 %gcc@4.8.5 target=aarch64'
+  - 'jdk %gcc@4.8.5 target=aarch64'
+  - 'emacs+tls %gcc@4.8.5 target=aarch64'
+  # Scientific tools optimized for Cascade Lake Platform
+  - 'openblas %gcc@9.3.0 threads=openmp'
+  - 'gsl@2.5 %@9.3.0'
+  - 'stream+openmp %gcc@9.3.0 cflags="-O3 -fopenmp"'
+  - 'octave+qt+llvm %gcc@9.3.0 ^openblas ^llvm@7.0.1'
+  # Bioinfo Software
+  - 'bwa@0.7.17 %gcc@9.3.0'
+  - 'samtools@1.9 %gcc@9.3.0'
+  - 'bowtie2@2.3.5 %gcc@9.3.0'
+  - 'bowtie@1.2.2_p1 %gcc@4.8.5 target=aarch64'
+  - 'hisat2@2.1.0 %gcc@9.3.0'
+  - 'tophat@2.1.2 %gcc@4.8.5 target=aarch64'
+  - 'bismark@0.19.0 %gcc@9.3.0'
+  - 'blast-plus@2.9.0 %gcc@9.3.0'
+  - 'openmpi %gcc@9.3.0'
+  - 'mpich@3.3.2+hydra+romio+slurm netmod=ofi %gcc@9.3.0'
+  - 'mpich@3.3.2+hydra+romio+slurm netmod=ofi %gcc@9.3.0'
+  - 'mvapich2 %gcc@9.3.0'
+  # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %gcc@9.3.0'
+  - 'lammps %gcc@9.3.0'
+  - 'openfoam@1716 %gcc@7.4.0'
+  - 'openfoam@1812_191001 %gcc@7.4.0'
+  - 'openfoam@19.3 %gcc@7.4.0'
+  - 'fftw~mpi %gcc@9.3.0'
+  - 'fftw+mpi %gcc@9.3.0'
+  - 'netcdf-fortran~mpi %gcc@9.3.0'
+  - 'netcdf-fortran+mpi %gcc@9.3.0'
+  - 'nco %gcc@9.3.0'
+  - 'megahit %gcc@9.3.0'
+  - 'gromacs+mpi@2019.4 %gcc@9.3.0'
+  - 'abinit %gcc@9.3.0 ^fftw~openmp precision=float,double' # Bugs: 1) Failed to concret abinit without specifying fftw~openmp; 2) Abinit requires fftw precision=float,double
+  - 'mcl %gcc@9.3.0'
+  - 'eigen %gcc@9.3.0' 
+  - 'precice+python %gcc@9.3.0'
+  - 'mrbayes@3.2.7a+mpi+beagle~readline %gcc@9.3.0' #Varint readline doesn't recommend to install with mpi
+  - 'sundials@5.0.0+mpi+openmp %gcc@9.3.0'
+  - 'boost %gcc@9.3.0'
+  - 'boost+mpi@1.65.1 %gcc@4.8.5' # Required explicitly by acct-umjplw
+  - 'cdo@1.9.8 ^hdf5@1.10.6~cxx~debug~fortran+hl~mpi+pic+shared~szip+threadsafe ^netcdf-c@4.7.3~dap~hdf4~mpi~parallel-netcdf+pic+shared%gcc@9.3.0' #Required explicitly by acct-hpccesm
