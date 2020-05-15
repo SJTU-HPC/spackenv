@@ -15,8 +15,7 @@ modules:
         ^openmpi@4.0.3: 'openmpi'
     whitelist:
       - 'gcc'
-      - 'miniconda2'
-      - 'miniconda3'
+      - 'miniforge3'
       - 'cudnn'
       - 'jdk' 
       - 'openjdk' 
@@ -244,8 +243,7 @@ mirrors:
 
 install:
   # General libs or utilities (mostly compilers or binary ones) for aarch64 platform
-  - 'miniconda2@4.6.14 %gcc@4.8.5 target=aarch64'
-  - 'miniconda3@4.6.14 %gcc@4.8.5 target=aarch64'
+  - 'miniforge3@4.8.3-2-Linux-aarch64 %gcc@4.8.5 target=aarch64'
   - 'jdk %gcc@4.8.5 target=aarch64'
   - 'emacs+tls %gcc@4.8.5 target=aarch64'
   # Scientific tools optimized for Cascade Lake Platform
