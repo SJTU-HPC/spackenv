@@ -162,7 +162,7 @@ packages:
     variants: +fortran +hl
     version: [1.10.6]
   lammps:
-    variants: +asphere+body+class2+colloid+compress+coreshell+dipole+exceptions+granular+kspace+latte+manybody+mc+meam+misc+molecule+mpiio+peri+poems+python+qeq+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp+user-reaxc+mpi
+    variants: +asphere+body+class2+colloid+compress+coreshell+dipole+exceptions+granular+kspace+latte+manybody+mc+meam+misc+molecule+mpiio+peri+poems+python+qeq+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp+user-reaxc+mpi~ffmpeg
     version: [20190807]
   netcdf-cxx:
     version: [4.2]
