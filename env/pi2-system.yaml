@@ -420,6 +420,7 @@ install:
   # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %gcc@9.2.0'
   # - 'mvapich2@2.3.1 fabrics=nemesisofi file_systems=lustre process_managers=slurm %intel@19.0.5'
   - 'lammps %gcc@8.3.0'
+  - 'lammps %intel@19.0.5 ^intel-parallel-studio@cluster.2019.5'
   - 'openfoam@1716 %gcc@7.4.0'
   - 'openfoam@1812_191001 %gcc@7.4.0'
   - 'openfoam@1912 %gcc@7.4.0'
