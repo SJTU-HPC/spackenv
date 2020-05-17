@@ -325,6 +325,37 @@ spack编译的部分软件需要license才能正常使用，以pgi@19.4为例；
 
 此方法更新license需要pgi账户。
 
+合并重复安装的软件包
+--------------------
+
+Spack上游软件包的variants发生变化后，Spack会认为当前安装的软件包不再满足spec要求，导致软件包被重复安装，以 intel-parallel-studio 为例，重复被安装多次会导致匹配问题。可调整环境变量中预期variants，使Spack优先匹配到已经安装的软件包。
+
+检查已安装软件包使用的variants::
+
+  $ spack find -v intel-parallel-studio@cluster.2019.5
+  ==> 1 installed package
+  -- linux-centos7-cascadelake / intel@19.0.5 ---------------------
+  intel-parallel-studio@cluster.2019.5+advisor auto_dispatch=none ~clck+daal~gdb~ilp64+inspector+ipp+itac+mkl+mpi~newdtags+rpath+shared+tbb threads=openmp +vtune
+
+测试Spack期望使用的variants::
+
+  $ spack spec intel-parallel-studio@cluster.2019.5 %intel@19.0.5
+  Input spec
+  --------------------------------
+  intel-parallel-studio@cluster.2019.5%intel@19.0.5
+  
+  Concretized
+  --------------------------------
+  intel-parallel-studio@cluster.2019.5%intel@19.0.5+advisor auto_dispatch=none +clck+daal~gdb~ilp64+inspector+ipp+itac+mkl+mpi~newdtags+rpath+shared+tbb threads=openmp +vtune arch=linux-centos7-skylake_avx512
+
+对比发现Spack预期多装了一个 ``+clck`` variant，这个在已安装软件中是没有的。
+编辑 ``env/pi2-system.yaml`` 去掉这个variant，或者显式地说明不需要 ``~clck`` 特性，然后重新测试是否会有重复安装的问题。
+从登陆节点申请资源后在计算节点上编译，已经能自动识别到cascadelake架构，不需要用target指定。
+
+  $ srun -p small -n 4 --pty /bin/bash  
+  $ ./install --env env/pi2-system.yaml
+  $ spack install intel-parallel-studio@cluster.2019.5 %intel@19.0.5
+[+] /lustre/opt/cascadelake/linux-centos7-cascadelake/intel-19.0.5/intel-parallel-studio-cluster.2019.5-ju4d5rkrmkchhklxtevuqnnqtehx5nkq
 
 参考资料
 ========
