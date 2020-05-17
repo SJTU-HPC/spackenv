@@ -162,7 +162,7 @@ packages:
     variants: +fortran +hl
     version: [1.10.6]
   lammps:
-    variants: +asphere+body+class2+colloid+compress+coreshell+dipole+exceptions+granular+kokkos+kspace+latte+manybody+mc+meam+misc+molecule+mpiio+peri+poems+python+qeq+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp+user-reaxc+mpi
+    variants: +asphere+body+class2+colloid+compress+coreshell+dipole+exceptions+granular+kspace+latte+manybody+mc+meam+misc+molecule+mpiio+peri+poems+python+qeq+replica+rigid+shock+snap+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp+user-reaxc+mpi
     version: [20190807]
   netcdf-cxx:
     version: [4.2]
@@ -173,7 +173,7 @@ packages:
   mpich:
     variants: +hydra +romio +slurm netmod=ofi
   intel-parallel-studio:
-    variants: +clck +inspector +itac +mkl +mpi +advisor +vtune threads=openmp
+    variants: +inspector +itac +mkl +mpi +advisor +vtune threads=openmp
   openfoam:
     version: [1912, 1812_191001, 1716]
   r:
