@@ -450,6 +450,21 @@ Spack是根据软件包的依赖关系图来生成Hash，进而判断两个包�
   ==> Do you want to proceed? [y/n] y
   ==> Regenerating tcl module files
 
+对 intel 模块的特殊处理
+-----------------------
+
+因Spack尚未修复的缺陷 https://github.com/spack/spack/issues/12628 ，intel系列产品(``intel-parallel-studio``, ``intel-mpi``, ``intel-mkl`` 等)的Environment Modules会错误地包含 ``/usr/bin`` 等系统路径，导致卸载模块后无法找到系统命令，需要手工修复::
+
+  $ cd /lustre/share/spack/modules/cascadelake
+  $ find . -type f ! -path './.git/*' -exec sed -i '/PYTHONHOME/d' {} \;
+  $ find . -type f ! -path './.git/*' -exec sed -i '/PYTHONPATH/d' {} \;
+  $ find . -type f ! -path './.git/*' -exec sed -i '/_CONDA_PYTHON/d' {} \;
+  $ find . -type f ! -path './.git/*' -exec sed -i '/^append-path PATH "\/usr*/d' {} \;
+  $ find . -type f ! -path './.git/*' -exec sed -i '/^append-path PATH "\/bin*/d' {} \;
+  $ find . -type f ! -path './.git/*' -exec sed -i '/^append-path PATH "\/opt*/d' {} \;
+  $ find . -type f ! -path './.git/*' -exec sed -i '/^append-path PATH "\/lustre\/home*/d' {} \;
+  $ find . -type f ! -path './.git/*' -exec sed -i '/^append-path PATH "\/lustre\/opt*/d' {} \;
+
 参考资料
 ========
 
