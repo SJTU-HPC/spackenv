@@ -357,6 +357,114 @@ Spack上游软件包的variants发生变化后，Spack会认为当前安装的�
   $ spack install intel-parallel-studio@cluster.2019.5 %intel@19.0.5
 [+] /lustre/opt/cascadelake/linux-centos7-cascadelake/intel-19.0.5/intel-parallel-studio-cluster.2019.5-ju4d5rkrmkchhklxtevuqnnqtehx5nkq
 
+处理Modules名字冲突的软件包
+---------------------------
+
+名字相同但variants不同的软件包，在Spack生成Modules时可能会导致名字冲突，可尝试通过如下三种方法解决。
+
+- 方法一：把多个variants不同的同名同版本软件包归并到一个共同的超集软件上，在环境文件中指定安装该软件时使用超集的variants。
+- 方法二：修改环境文件，只为满足特定条件(编译器、variant等)的软件包生成Modules。
+- 方法三：手动移除重复软件包。这里以 ``python@3.7.4 %intel@19.0.5`` 重复软件包的处理过程为例，展示发现软件包、确认重复原因、删除重复包的过程。
+
+发现重复软件包::
+
+  $ spack find python %intel@19.0.5
+  ==> 2 installed packages
+  -- linux-centos7-cascadelake / intel@19.0.5 ---------------------
+  python@3.7.4  python@3.7.4
+
+确认重复原因，首先使用 ``spack find -v`` 检查是否是因为variant不同导致重复，对比以后发现这两个包的variants是一样的::
+
+  $ spack find -v python@3.7.4 %intel@19.0.5
+  ==> 2 installed packages
+  -- linux-centos7-cascadelake / intel@19.0.5 ---------------------
+  python@3.7.4+bz2+ctypes+dbm~debug+libxml2+lzma~nis~optimizations patches=ad05cbbb01a6a2a2496274098deea981d205f7c936acf56d976cdb540b87b843 +pic+pyexpat+pythoncmd+readline+shared+sqlite3+ssl~tix~tkinter~ucs4~uuid+zlib
+  python@3.7.4+bz2+ctypes+dbm~debug+libxml2+lzma~nis~optimizations patches=ad05cbbb01a6a2a2496274098deea981d205f7c936acf56d976cdb540b87b843 +pic+pyexpat+pythoncmd+readline+shared+sqlite3+ssl~tix~tkinter~ucs4~uuid+zlib
+
+Spack是根据软件包的依赖关系图来生成Hash，进而判断两个包是否“一样”。
+进一步使用 ``spack find -dl`` 检查两个包编译时引入的依赖关系，发现是ncurses和openssl版本的微小变化导致的差异::
+
+  $ spack find -dl python %intel@19.0.5                                                                      
+  ==> 2 installed packages
+  -- linux-centos7-cascadelake / intel@19.0.5 ---------------------
+  x23u56z python@3.7.4
+  47poaym     bzip2@1.0.8
+  3bpkrs3     expat@2.2.9
+  w6tur3a         libbsd@0.10.0
+  lx2nlwu     gdbm@1.18.1
+  rt4fzwj         readline@8.0                                                                                       be43mio             ncurses@6.1
+  5u7xhrn     gettext@0.20.1                                                                                         ou6olia         libxml2@2.9.9
+  plt3hnw             libiconv@1.16
+  hqy4spw             xz@5.2.4
+  p7mupkk             zlib@1.2.11
+  df37h7j         tar@1.32
+  ne3roxv     libffi@3.2.1
+  6g23hf3     openssl@1.1.1d
+  ww3j5gr     sqlite@3.30.1
+  
+  dcmb22g python@3.7.4
+  47poaym     bzip2@1.0.8
+  3bpkrs3     expat@2.2.9
+  w6tur3a         libbsd@0.10.0
+  t5craen     gdbm@1.18.1
+  hmnszx2         readline@8.0
+  bbpvmkf             ncurses@6.2
+  ecvboc4     gettext@0.20.2
+  plt3hnw         libiconv@1.16
+  x47quyd         libxml2@2.9.10
+  6p7xsge             xz@5.2.5
+  p7mupkk             zlib@1.2.11
+  df37h7j         tar@1.32
+  jdzi5nj     libffi@3.3
+  qc2p3sv     openssl@1.1.1g
+  l3lqlab     sqlite@3.31.1
+
+然后尝试手动删除其中一个软件包，使用 ``spack find -dl`` 查找到的Hash指定软件包，如果要删除的软件包没有其他软件包依赖，就键入 ``y`` 删除。
+
+  $ spack uninstall /x23u56z
+  ==> Will not uninstall python@3.7.4%intel@19.0.5/x23u56z
+  The following packages depend on it:
+      -- linux-centos7-cascadelake / intel@19.0.5 ---------------------
+      2xfrn3q lammps@20190807%intel +asphere+body build_type=RelWithDebInfo +class2+colloid+compress+coreshell~cuda cuda_arch=none ~cuda_mps+dipole+exceptions~ffmpeg+granular+jpeg~kokkos+kspace+latte+lib+manybody+mc+meam+misc+molecule+mpi+mpiio~opencl+openmp+peri+png+poems+python+qeq+replica+rigid+shock+snap~spin+srd+user-atc+user-h5md+user-lb+user-misc+user-netcdf+user-omp+user-reaxc~voronoi
+  
+  ==> Error: There are still dependents.
+    use `spack uninstall --dependents` to remove dependents too
+
+删下面这一个：
+
+  $ spack uninstall /dcmb22g
+  ==> The following packages will be uninstalled:
+  
+      -- linux-centos7-cascadelake / intel@19.0.5 ---------------------
+      dcmb22g python@3.7.4%intel +bz2+ctypes+dbm~debug+libxml2+lzma~nis~optimizations patches=ad05cbbb01a6a2a2496274098deea981d205f7c936acf56d976cdb540b87b843 +pic+pyexpat+pythoncmd+readline+shared+sqlite3+ssl~tix~tkinter~ucs4~uuid+zlib
+  ==> Do you want to proceed? [y/N] y
+
+最后重新生成Modules::
+
+  $ spack module tcl refresh python@3.7.4 %intel@19.0.5
+  ==> You are about to regenerate tcl module files for:
+  
+  -- linux-centos7-cascadelake / intel@19.0.5 ---------------------
+  x23u56z python@3.7.4
+  
+  ==> Do you want to proceed? [y/n] y
+  ==> Regenerating tcl module files
+
+对 intel 模块的特殊处理
+-----------------------
+
+因Spack尚未修复的缺陷 https://github.com/spack/spack/issues/12628 ，intel系列产品(``intel-parallel-studio``, ``intel-mpi``, ``intel-mkl`` 等)的Environment Modules会错误地包含 ``/usr/bin`` 等系统路径，导致卸载模块后无法找到系统命令，需要手工修复::
+
+  $ cd /lustre/share/spack/modules/cascadelake
+  $ find . -type f ! -path './.git/*' -exec sed -i '/PYTHONHOME/d' {} \;
+  $ find . -type f ! -path './.git/*' -exec sed -i '/PYTHONPATH/d' {} \;
+  $ find . -type f ! -path './.git/*' -exec sed -i '/_CONDA_PYTHON/d' {} \;
+  $ find . -type f ! -path './.git/*' -exec sed -i '/^append-path PATH "\/usr*/d' {} \;
+  $ find . -type f ! -path './.git/*' -exec sed -i '/^append-path PATH "\/bin*/d' {} \;
+  $ find . -type f ! -path './.git/*' -exec sed -i '/^append-path PATH "\/opt*/d' {} \;
+  $ find . -type f ! -path './.git/*' -exec sed -i '/^append-path PATH "\/lustre\/home*/d' {} \;
+  $ find . -type f ! -path './.git/*' -exec sed -i '/^append-path PATH "\/lustre\/opt*/d' {} \;
+
 参考资料
 ========
 
