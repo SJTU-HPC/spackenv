@@ -57,7 +57,7 @@ modules:
       - 'grackle'
       - 'nektar'
       - 'metis +gdb'
-      - 'netlib-lapack ~xblas'
+      - 'netlib-lapack'
       - 'scons'
       - 'cantera'
       - 'openfoam-org'
