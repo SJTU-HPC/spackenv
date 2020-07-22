@@ -43,7 +43,7 @@ Spackenv 可根据筛选条件为部分面向最终用户的软件生成 Environ
 
 在软件包管理员账户下克隆spackenv项目::
 
-  $ git clone git@git.hpc.sjtu.edu.cn:devops/spackenv.git 
+  $ git clone https://github.com/SJTU-HPC/spackenv.git
 
 在项目的env中复制空的示例环境文件 ``emtpy.yaml`` ::
 
