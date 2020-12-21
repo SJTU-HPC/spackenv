@@ -7,7 +7,8 @@ config:
   checksum: true
   db_lock_timeout: 180
   dirty: false
-  install_tree: /lustre/opt/dgx2
+  install_tree:
+    root: /lustre/opt/dgx2
   misc_cache: /lustre/home/rpm/.spack/misccache
   module_roots:
     tcl: /lustre/share/spack/modules/dgx2

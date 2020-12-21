@@ -69,7 +69,8 @@ if 'config' not in env.keys():
     env['config'] = {}
     env['config']['checksum'] = True
     env['config']['dirty'] = False
-    env['config']['install_tree'] = env['spack_install_root']
+    env['config']['install_tree'] = {}
+    env['config']['install_tree']['root'] = env['spack_install_root']
     env['config']['module_roots'] = {}
     env['config']['module_roots']['tcl'] = env['spack_modules_root']
     env['config']['source_cache'] = os.path.join(os.environ['HOME'], '.spack', 'sourcecache')
