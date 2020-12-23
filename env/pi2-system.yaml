@@ -84,6 +84,7 @@ modules:
       - 'megahit'
       - 'mrbayes'
       - 'ncbi-rmblastn'
+      - 'nvhpc'
       - 'py-htseq'
       - 'py-quast'
       - 'picard'
